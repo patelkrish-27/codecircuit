@@ -200,6 +200,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+  // Get all unique tags from blog posts
+        function getAllUniqueTags(posts) {
+            const uniqueTags = new Set();
+            posts.forEach(post => {
+                post.tags.forEach(tag => {
+                    uniqueTags.add(JSON.stringify(tag));
+                });
+            });
+            return Array.from(uniqueTags).map(tag => JSON.parse(tag));
+        }
+
+        // Initialize selected tags array
+        let selectedTags = [];
+
+        
  // Blog posts data
         const blogPosts = [
             {
@@ -343,37 +358,65 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Function to create blog post card
-        function createBlogPostCard(post) {
-            const card = document.createElement('div');
-            card.className = 'bg-white rounded shadow-sm overflow-hidden transition-transform hover:shadow-md hover:-translate-y-1';
-            card.dataset.date = post.date; // Store date for sorting purposes
+      function createBlogPostCard(post) {
+    const cardContainer = document.createElement('div');
+    cardContainer.className = 'group [perspective:1000px] w-full';
 
-            // Create tags HTML
-            const tagsHTML = post.tags.map(tag => {
-                return `<span class="bg-${tag.color}-100 text-${tag.color}-800 text-xs font-medium px-2.5 py-0.5 rounded">${tag.name}</span>`;
-            }).join('');
+    const card = document.createElement('div');
+    card.className = `
+        relative w-full h-96 duration-700 ease-in-out 
+        [transform-style:preserve-3d] 
+        group-hover:[transform:rotateY(180deg)]
+        transition-transform
+    `;
 
-            card.innerHTML = `
-                <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover object-top">
-                <div class="p-5">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        ${tagsHTML}
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">${post.title}</h3>
-                    <p class="text-gray-600 mb-4 line-clamp-2">${post.excerpt}</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-500">${formatDate(post.date)}</span>
-                    </div>
-                </div>
-            `;
+    // Front face
+    const front = document.createElement('div');
+    front.className = `
+        absolute w-full h-full 
+        bg-white rounded shadow-sm overflow-hidden 
+        [backface-visibility:hidden]
+    `;
+    front.dataset.date = post.date;
 
-            return card;
-        }
+    const tagsHTML = post.tags.map(tag => {
+        return `<span class="bg-${tag.color}-100 text-${tag.color}-800 text-xs font-medium px-2.5 py-0.5 rounded">${tag.name}</span>`;
+    }).join('');
+
+    front.innerHTML = `
+        <img src="${post.image}" alt="${post.title}" class="w-full h-44 object-cover object-top rounded-t">
+        <div class="p-5">
+            <div class="flex flex-wrap gap-2 mb-3">
+                ${tagsHTML}
+            </div>
+            <h3 class="text-xl font-semibold mb-2">${post.title}</h3>
+            <span class="text-sm text-gray-500">${formatDate(post.date)}</span>
+        </div>
+    `;
+
+    // Back face
+    const back = document.createElement('div');
+    back.className = `
+        absolute w-full h-full 
+        bg-white rounded shadow-sm overflow-hidden 
+        [backface-visibility:hidden] [transform:rotateY(180deg)]
+        p-5 flex items-center justify-center
+    `;
+    back.innerHTML = `<p class="text-gray-600 text-sm leading-relaxed text-center">${post.excerpt}</p>`;
+
+    card.appendChild(front);
+    card.appendChild(back);
+    cardContainer.appendChild(card);
+
+    return cardContainer;
+}
+
 
         // Variables for pagination
         let currentPage = 1;
         const postsPerPage = 6;
         let filteredPosts = [...blogPosts];
+        let currentSortOption = 'newest';
 
         // Function to render blog posts based on current filters and pagination
         function renderBlogPosts() {
@@ -384,9 +427,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const endIndex = currentPage * postsPerPage;
             const postsToShow = filteredPosts.slice(startIndex, endIndex);
 
-            postsToShow.forEach(post => {
-                container.appendChild(createBlogPostCard(post));
-            });
+            if (postsToShow.length === 0) {
+                // Show no results message
+                const noResults = document.createElement('div');
+                noResults.className = 'col-span-full text-center py-10';
+                noResults.innerHTML = `
+                    <i class="ri-search-line text-gray-400 text-4xl mb-3"></i>
+                    <h3 class="text-xl font-medium text-gray-500">No matching posts found</h3>
+                    <p class="text-gray-400 mt-2">Try adjusting your filters or search criteria.</p>
+                `;
+                container.appendChild(noResults);
+            } else {
+                postsToShow.forEach(post => {
+                    container.appendChild(createBlogPostCard(post));
+                });
+            }
 
             // Hide/show load more button based on remaining posts
             const loadMoreBtn = document.getElementById('load-more-btn');
@@ -399,6 +454,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Function to filter posts by date range
         function filterPostsByDate(option) {
+            currentSortOption = option;
             const today = new Date();
             today.setHours(0, 0, 0, 0); // Set to beginning of day
 
@@ -407,39 +463,53 @@ document.addEventListener('DOMContentLoaded', function() {
             const oneMonth = 30 * oneDay;
             const oneYear = 365 * oneDay;
 
+            // First apply tag filters
+            let tagFilteredPosts = blogPosts;
+            if (selectedTags.length > 0) {
+                tagFilteredPosts = blogPosts.filter(post => {
+                    // Only include posts that have ALL selected tags (AND logic)
+                    return selectedTags.every(selectedTag =>
+                        post.tags.some(tag =>
+                            selectedTag.name === tag.name && selectedTag.color === tag.color
+                        )
+                    );
+                });
+            }
+
+            // Then apply date filter
             switch (option) {
                 case 'newest':
-                    filteredPosts = [...blogPosts].sort((a, b) => new Date(b.date) - new Date(a.date));
+                    filteredPosts = [...tagFilteredPosts].sort((a, b) => new Date(b.date) - new Date(a.date));
                     break;
                 case 'oldest':
-                    filteredPosts = [...blogPosts].sort((a, b) => new Date(a.date) - new Date(b.date));
+                    filteredPosts = [...tagFilteredPosts].sort((a, b) => new Date(a.date) - new Date(b.date));
                     break;
                 case 'today':
-                    filteredPosts = blogPosts.filter(post => {
+                    filteredPosts = tagFilteredPosts.filter(post => {
                         const postDate = new Date(post.date);
                         return postDate.toDateString() === today.toDateString();
                     });
                     break;
                 case 'this-week':
-                    filteredPosts = blogPosts.filter(post => {
+                    filteredPosts = tagFilteredPosts.filter(post => {
                         const postDate = new Date(post.date);
                         return (today - postDate) <= oneWeek;
                     });
                     break;
                 case 'this-month':
-                    filteredPosts = blogPosts.filter(post => {
+                    filteredPosts = tagFilteredPosts.filter(post => {
                         const postDate = new Date(post.date);
                         return (today - postDate) <= oneMonth;
                     });
                     break;
                 case 'this-year':
-                    filteredPosts = blogPosts.filter(post => {
+                    filteredPosts = tagFilteredPosts.filter(post => {
                         const postDate = new Date(post.date);
                         return (today - postDate) <= oneYear;
                     });
                     break;
                 default:
-                    filteredPosts = [...blogPosts];
+                    filteredPosts = [...tagFilteredPosts];
             }
 
             // Reset pagination
@@ -458,7 +528,83 @@ document.addEventListener('DOMContentLoaded', function() {
             renderBlogPosts();
         });
 
-        // Initial render - newest first
-        filterPostsByDate('newest');
+        // Filter modal functionality
+        function setupFilterModal() {
+            const filterBtn = document.getElementById('filter-btn');
+            const filterModal = document.getElementById('filter-modal');
+            const closeFilterModalBtn = document.getElementById('close-filter-modal');
+            const applyFiltersBtn = document.getElementById('apply-filters');
+            const clearFiltersBtn = document.getElementById('clear-filters');
+            const filterTagsContainer = document.getElementById('filter-tags');
 
-        
+            // Get all unique tags
+            const uniqueTags = getAllUniqueTags(blogPosts);
+
+            // Populate filter modal with tags
+            uniqueTags.forEach(tag => {
+                const tagItem = document.createElement('div');
+                tagItem.className = 'flex items-center';
+                tagItem.innerHTML = `
+                    <input type="checkbox" id="tag-${tag.name.toLowerCase().replace(/\s+/g, '-')}" 
+                           class="tag-checkbox w-4 h-4 mr-2 accent-${tag.color}-600"
+                           data-tag-name="${tag.name}" 
+                           data-tag-color="${tag.color}">
+                    <label for="tag-${tag.name.toLowerCase().replace(/\s+/g, '-')}" class="cursor-pointer flex items-center">
+                        <span class="bg-${tag.color}-100 text-${tag.color}-800 text-xs font-medium px-2.5 py-0.5 rounded">
+                            ${tag.name}
+                        </span>
+                    </label>
+                `;
+                filterTagsContainer.appendChild(tagItem);
+            });
+
+            // Open modal
+            filterBtn.addEventListener('click', () => {
+                filterModal.classList.remove('hidden');
+                // Update checkbox states based on currently selected tags
+                document.querySelectorAll('.tag-checkbox').forEach(checkbox => {
+                    const tagName = checkbox.dataset.tagName;
+                    const tagColor = checkbox.dataset.tagColor;
+                    checkbox.checked = selectedTags.some(tag => tag.name === tagName && tag.color === tagColor);
+                });
+            });
+
+            // Close modal
+            closeFilterModalBtn.addEventListener('click', () => {
+                filterModal.classList.add('hidden');
+            });
+
+            // Close modal when clicking outside
+            filterModal.addEventListener('click', (e) => {
+                if (e.target === filterModal) {
+                    filterModal.classList.add('hidden');
+                }
+            });
+
+            // Apply filters
+            applyFiltersBtn.addEventListener('click', () => {
+                selectedTags = [];
+                document.querySelectorAll('.tag-checkbox:checked').forEach(checkbox => {
+                    selectedTags.push({
+                        name: checkbox.dataset.tagName,
+                        color: checkbox.dataset.tagColor
+                    });
+                });
+                filterPostsByDate(currentSortOption);
+                filterModal.classList.add('hidden');
+            });
+
+            // Clear all filters
+            clearFiltersBtn.addEventListener('click', () => {
+                document.querySelectorAll('.tag-checkbox').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                selectedTags = [];
+                filterPostsByDate(currentSortOption);
+                filterModal.classList.add('hidden');
+            });
+        }
+
+        // Initialize the page
+        setupFilterModal();
+        filterPostsByDate('newest');
