@@ -496,3 +496,7 @@ input[type="number"]::-webkit-outer-spin-button {
   outline: 2px solid rgba(59, 130, 246, 0.5);
   outline-offset: 2px;
 }
+
+html {
+  scroll-behavior: smooth;
+}

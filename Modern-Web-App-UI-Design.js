@@ -1326,7 +1326,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentPage = 0;
     let filteredPages = [...zinePages];
     let currentFilter = "All";
-    let scrollMode = false; // Flag to toggle between paginated and scroll modes
     
     // DOM Elements
     const pagesContainer = document.getElementById('zine-pages-container');
@@ -1347,28 +1346,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const tocContent = document.getElementById('zine-toc-content');
     const tocClose = document.getElementById('zine-toc-close');
     const tagFilters = document.querySelectorAll('.zine-tag-filter');
-    const scrollModeToggle = document.getElementById('zine-scroll-toggle') || createScrollToggle();
-    
-
-    function setPaginationVisibility(show) {
-        const pagination = document.querySelector('.zine-pagination');
-        if (pagination) pagination.style.display = show ? 'flex' : 'none';
-        if (thumbnails) thumbnails.style.display = show ? 'flex' : 'none';
-    }
-
-    // Create toggle button for scroll mode if it doesn't exist
-    function createScrollToggle() {
-      const toggle = document.createElement('button');
-      toggle.id = 'zine-scroll-toggle';
-      toggle.className = 'zine-btn bg-gray-100 text-gray-700 hover:bg-gray-200';
-      toggle.innerHTML = '<i class="ri-layout-row-line mr-1"></i> Toggle View';
-      
-      // Insert before fullscreen button
-      const controlsContainer = fullscreenBtn.parentElement;
-      controlsContainer.insertBefore(toggle, fullscreenBtn);
-      
-      return toggle;
-    }
     
     // Apply tag filters
     function applyFilter(tag) {
@@ -1394,20 +1371,13 @@ document.addEventListener('DOMContentLoaded', function () {
       
       // Reset to first page and update
       currentPage = 0;
-      
-      if (scrollMode) {
-        // For scroll mode, show/hide sections based on tag
-        renderZinePages();
-      } else {
-        // For paginated mode
-        totalPagesSpan.textContent = filteredPages.length;
-        renderPage(currentPage);
-        renderThumbnails();
-        updateProgressBar();
-      }
+      totalPagesSpan.textContent = filteredPages.length;
+      renderPage(currentPage);
+      renderThumbnails();
+      updateProgressBar();
     }
     
-    // Render current page (for paginated mode)
+    // Render current page
     function renderPage(idx) {
       if (filteredPages.length === 0) {
         pagesContainer.innerHTML = `
@@ -1433,7 +1403,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <p class="text-lg mb-6 text-gray-700">${page.desc}</p>
           </div>
           <div class="md:w-1/2 flex items-center justify-center p-6">
-            <img src="${page.image}" alt="${page.title}" class="zine-page-img rounded-lg shadow-lg cursor-zoom-in" />
+            <img src="${page.image}" alt="${page.title}" class="zine-page-img" />
           </div>
         </div>
       `;
@@ -1441,183 +1411,189 @@ document.addEventListener('DOMContentLoaded', function () {
       
       // Animate in
       const content = document.querySelector('.zine-page-content');
-      gsap.fromTo(content, 
-        { opacity: 0, y: 20 }, 
-        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
-      );
+      setTimeout(() => {
+        content.style.opacity = "1";
+        content.style.transform = "translateY(0)";
+      }, 50);
       
       // Image modal
       pagesContainer.querySelector('.zine-page-img').onclick = () => {
         modalImg.src = page.image;
         modalCaption.textContent = page.title + " - " + page.desc.substring(0, 100) + "...";
         modal.classList.remove('hidden');
-        gsap.fromTo(modalImg, 
-          { scale: 0.7, opacity: 0 }, 
-          { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" }
-        );
+        setTimeout(() => modal.classList.add('visible'), 10);
       };
       
       updateProgressBar();
     }
     
-    // Render all pages as sections for scroll-based zine
-     // Render all pages as scrollable sections
-     function renderZinePages() {
-        pagesContainer.innerHTML = filteredPages.map((page, idx) => `
-            <section class="zine-scroll-page min-h-screen flex flex-col md:flex-row items-center justify-center py-12" 
-                     data-tags="${page.tags.join(',')}">
-                <div class="md:w-1/2 flex flex-col justify-center px-6">
-                    <div class="flex flex-wrap gap-2 mb-3 zine-tags">
-                        ${page.tags.map(tag =>
-                            `<span class="zine-tag px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-700 scale-0">${tag}</span>`
-                        ).join('')}
-                    </div>
-                    <h3 class="page-title text-3xl font-bold mb-4 text-primary opacity-0">${page.title}</h3>
-                    <p class="page-desc text-lg mb-6 text-gray-700 opacity-0">${page.desc}</p>
-                </div>
-                <div class="md:w-1/2 flex items-center justify-center px-6">
-                    <img src="${page.image}" alt="${page.title}" class="page-image zine-page-img rounded-lg shadow-lg cursor-zoom-in opacity-0" style="max-width:90%;max-height:400px;" />
-                </div>
-            </section>
-        `).join('');
-        setupGSAPZineAnimations();
-        setupModalZoom();
-        setPaginationVisibility(false);
+    // Update progress bar
+    function updateProgressBar() {
+      if (filteredPages.length === 0) {
         progressBar.style.width = "0%";
+        return;
+      }
+      const progress = ((currentPage + 1) / filteredPages.length) * 100;
+      progressBar.style.width = `${progress}%`;
     }
-
-    // GSAP Scroll Animations for scroll mode
-    function setupGSAPZineAnimations() {
-        gsap.utils.toArray('.zine-scroll-page').forEach(page => {
-            gsap.from(page.querySelector('.page-title'), {
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: page,
-                    start: "top 80%",
-                }
-            });
-            gsap.from(page.querySelector('.page-desc'), {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                delay: 0.2,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: page,
-                    start: "top 80%",
-                }
-            });
-            gsap.from(page.querySelector('.page-image'), {
-                x: 100,
-                opacity: 0,
-                duration: 1.1,
-                ease: "elastic.out(1,0.7)",
-                scrollTrigger: {
-                    trigger: page.querySelector('.page-image'),
-                    start: "top 85%",
-                }
-            });
-            gsap.to(page.querySelectorAll('.zine-tag'), {
-                scale: 1,
-                opacity: 1,
-                stagger: 0.1,
-                duration: 0.5,
-                ease: "back.out(1.7)",
-                scrollTrigger: {
-                    trigger: page,
-                    start: "top 85%",
-                }
-            });
-        });
+    
+    // Render thumbnails
+    function renderThumbnails() {
+      thumbnails.innerHTML = filteredPages.map((page, idx) =>
+        `<img src="${page.image}" alt="Page thumbnail" class="zine-thumb${idx === currentPage ? ' active' : ''}" data-idx="${idx}" />`
+      ).join('');
+      
+      thumbnails.querySelectorAll('.zine-thumb').forEach(img => {
+        img.onclick = () => {
+          currentPage = parseInt(img.dataset.idx);
+          renderPage(currentPage);
+          renderThumbnails();
+        };
+      });
     }
-
-    // Modal Zoom with GSAP
-    function setupModalZoom() {
-        pagesContainer.querySelectorAll('.zine-page-img').forEach(img => {
-            img.onclick = () => {
-                modalImg.src = img.src;
-                modalCaption.textContent = img.alt;
-                modal.classList.remove('hidden');
-                gsap.fromTo(modalImg, 
-                  { scale: 0.7, opacity: 0 }, 
-                  { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" }
-                );
-            };
-        });
-    }
-
-    // Scroll Progress Bar for scroll mode
-    function setupScrollProgressBar() {
-        window.addEventListener('scroll', () => {
-            if (!scrollMode) return;
-            const zineSection = pagesContainer.parentElement;
-            const rect = zineSection.getBoundingClientRect();
-            const winHeight = window.innerHeight;
-            const totalHeight = zineSection.scrollHeight - winHeight;
-            let progress = 0;
-            if (rect.top < 0 && Math.abs(rect.top) < totalHeight) {
-                progress = Math.min(1, Math.abs(rect.top) / totalHeight);
-            } else if (rect.top >= 0) {
-                progress = 0;
-            } else {
-                progress = 1;
-            }
-            gsap.to(progressBar, {
-                width: (progress * 100) + "%",
-                duration: 0.1,
-                ease: "none"
-            });
-        });
-    }
-
-    // Tag filters (show/hide sections in scroll mode)
-    tagFilters.forEach(btn => {
-        btn.addEventListener('click', () => {
-            currentFilter = btn.dataset.tag;
-            tagFilters.forEach(b => {
-                b.classList.toggle('bg-primary', b.dataset.tag === currentFilter);
-                b.classList.toggle('text-white', b.dataset.tag === currentFilter);
-                b.classList.toggle('bg-gray-100', b.dataset.tag !== currentFilter);
-                b.classList.toggle('text-gray-700', b.dataset.tag !== currentFilter);
-            });
-            if (scrollMode) {
-                pagesContainer.querySelectorAll('.zine-scroll-page').forEach(section => {
-                    const tags = section.dataset.tags.split(',');
-                    section.style.display = (currentFilter === "All" || tags.includes(currentFilter)) ? '' : 'none';
-                });
-            } else {
-                applyFilter(currentFilter);
-            }
-        });
-    });
-
-    // Toggle between paginated and scroll modes
-    scrollModeToggle.onclick = function() {
-        scrollMode = !scrollMode;
-        if (scrollMode) {
-            renderZinePages();
-            scrollModeToggle.innerHTML = '<i class="ri-book-2-line mr-1"></i> Page View';
-        } else {
-            setPaginationVisibility(true);
+    
+    // Render table of contents
+    function renderTOC() {
+      tocContent.innerHTML = zinePages.map((page, idx) => {
+        const isActive = filteredPages.includes(page) && 
+                        filteredPages.indexOf(page) === currentPage;
+        const isFiltered = currentFilter !== "All" && !page.tags.includes(currentFilter);
+        
+        return `
+          <div class="toc-item p-3 border rounded ${isActive ? 'active border-primary' : 'border-gray-200'} 
+                      ${isFiltered ? 'opacity-50' : ''}" data-idx="${idx}">
+            <img src="${page.image}" alt="${page.title}" class="w-full h-24 object-cover rounded mb-2" />
+            <h4 class="font-medium text-sm">${page.title}</h4>
+            <div class="flex flex-wrap gap-1 mt-1">
+              ${page.tags.map(tag => 
+                `<span class="px-1.5 py-0.5 text-xs rounded-full bg-gray-100 text-gray-700">${tag}</span>`
+              ).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      tocContent.querySelectorAll('.toc-item').forEach((item, idx) => {
+        item.onclick = () => {
+          const pageIdx = parseInt(item.dataset.idx);
+          const page = zinePages[pageIdx];
+          
+          // If current filter doesn't include this page, switch to All
+          if (currentFilter !== "All" && !page.tags.includes(currentFilter)) {
+            applyFilter("All");
+          }
+          
+          // Find the index in filtered pages
+          const filteredIdx = filteredPages.findIndex(p => p === page);
+          if (filteredIdx !== -1) {
+            currentPage = filteredIdx;
             renderPage(currentPage);
             renderThumbnails();
-            scrollModeToggle.innerHTML = '<i class="ri-layout-row-line mr-1"></i> Scroll View';
-        }
+          }
+          
+          tocModal.classList.add('hidden');
+        };
+      });
+    }
+    
+    // Navigation buttons
+    prevBtn.onclick = () => {
+      if (currentPage > 0) {
+        currentPage--;
+        renderPage(currentPage);
+        renderThumbnails();
+      }
     };
-
-    // Setup scroll progress tracking
-    setupScrollProgressBar();
-
-    // Initial render in paginated mode
-    scrollModeToggle.innerHTML = '<i class="ri-layout-row-line mr-1"></i> Scroll View';
+    
+    nextBtn.onclick = () => {
+      if (currentPage < filteredPages.length - 1) {
+        currentPage++;
+        renderPage(currentPage);
+        renderThumbnails();
+      }
+    };
+    
+    // Fullscreen button
+    fullscreenBtn.onclick = () => {
+      const img = pagesContainer.querySelector('.zine-page-img');
+      if (img) {
+        if (img.requestFullscreen) img.requestFullscreen();
+        else if (img.webkitRequestFullscreen) img.webkitRequestFullscreen();
+        else if (img.msRequestFullscreen) img.msRequestFullscreen();
+      }
+    };
+    
+    // Download button
+    downloadBtn.onclick = () => {
+      if (filteredPages.length === 0) return;
+      
+      const img = pagesContainer.querySelector('.zine-page-img');
+      const link = document.createElement('a');
+      link.href = img.src;
+      link.download = filteredPages[currentPage].title.replace(/\s+/g, '_') + '.jpg';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+    
+    // Table of Contents button
+    tocBtn.onclick = () => {
+      renderTOC();
+      tocModal.classList.remove('hidden');
+      setTimeout(() => tocModal.classList.add('visible'), 10);
+    };
+    
+    // Modal close buttons
+    modalClose.onclick = () => {
+      modal.classList.remove('visible');
+      setTimeout(() => modal.classList.add('hidden'), 300);
+    };
+    
+    tocClose.onclick = () => {
+      tocModal.classList.remove('visible');
+      setTimeout(() => tocModal.classList.add('hidden'), 300);
+    };
+    
+    // Close modals when clicking outside
+    modal.onclick = e => { 
+      if (e.target === modal) {
+        modal.classList.remove('visible');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+      }
+    };
+    
+    tocModal.onclick = e => { 
+      if (e.target === tocModal) {
+        tocModal.classList.remove('visible');
+        setTimeout(() => tocModal.classList.add('hidden'), 300);
+      }
+    };
+    
+    // Tag filters
+    tagFilters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        applyFilter(btn.dataset.tag);
+      });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      if (modal.classList.contains('hidden') && tocModal.classList.contains('hidden')) {
+        if (e.key === 'ArrowLeft') prevBtn.click();
+        else if (e.key === 'ArrowRight') nextBtn.click();
+      } else {
+        if (e.key === 'Escape') {
+          if (!modal.classList.contains('hidden')) modalClose.click();
+          if (!tocModal.classList.contains('hidden')) tocClose.click();
+        }
+      }
+    });
+    
+    // Initial render
     totalPagesSpan.textContent = filteredPages.length;
     renderPage(currentPage);
     renderThumbnails();
-});
-
+  });
 // Podcast Player Logic
 document.addEventListener('DOMContentLoaded', function () {
     const audio = document.getElementById('podcast-audio');
@@ -3155,6 +3131,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
+
     
     // --- Paper Details Modal ---
     // Create modal container
@@ -3351,3 +3328,14 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('access-open').classList.add('checked');
     });
   });
+
+   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href').slice(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
