@@ -944,8 +944,6 @@ function helloWorld() {
                     <div class="flex">
                         <button
                             class="px-6 py-3 text-sm font-medium text-primary border-b-2 border-primary">Recent</button>
-                        <button class="px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700">Most
-                            Cited</button>
                         <button class="px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700">Saved</button>
                     </div>
                 </div>
@@ -955,109 +953,135 @@ function helloWorld() {
                     <div class="w-full md:w-64 border-b md:border-b-0 md:border-r border-gray-200 p-4">
                         <h3 class="font-medium text-gray-700 mb-3">Filters</h3>
 
+                        <!-- Subject Filter -->
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
                             <div class="space-y-2">
                                 <div class="flex items-center">
-                                    <div class="custom-checkbox checked" id="subject-cs"></div>
+                                    <input type="checkbox" id="subject-all"
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded" checked>
+                                    <label for="subject-all"
+                                        class="ml-2 text-sm text-gray-700 cursor-pointer">All</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="subject-cs"
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded">
                                     <label for="subject-cs" class="ml-2 text-sm text-gray-700 cursor-pointer">Computer
                                         Science</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <div class="custom-checkbox" id="subject-bio"></div>
+                                    <input type="checkbox" id="subject-bio"
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded">
                                     <label for="subject-bio"
                                         class="ml-2 text-sm text-gray-700 cursor-pointer">Biology</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <div class="custom-checkbox" id="subject-physics"></div>
+                                    <input type="checkbox" id="subject-physics"
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded">
                                     <label for="subject-physics"
                                         class="ml-2 text-sm text-gray-700 cursor-pointer">Physics</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <div class="custom-checkbox" id="subject-psych"></div>
+                                    <input type="checkbox" id="subject-psych"
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded">
                                     <label for="subject-psych"
                                         class="ml-2 text-sm text-gray-700 cursor-pointer">Psychology</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <div class="custom-checkbox" id="subject-econ"></div>
+                                    <input type="checkbox" id="subject-econ"
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded">
                                     <label for="subject-econ"
                                         class="ml-2 text-sm text-gray-700 cursor-pointer">Economics</label>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Year Filter -->
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Year</label>
                             <div class="space-y-2">
                                 <div class="flex items-center">
-                                    <div class="custom-radio checked" id="year-all"></div>
+                                    <input type="radio" name="year" id="year-all"
+                                        class="h-4 w-4 text-blue-600 border-gray-300" checked>
                                     <label for="year-all" class="ml-2 text-sm text-gray-700 cursor-pointer">All
                                         Years</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <div class="custom-radio" id="year-2025"></div>
+                                    <input type="radio" name="year" id="year-2025"
+                                        class="h-4 w-4 text-blue-600 border-gray-300">
                                     <label for="year-2025"
                                         class="ml-2 text-sm text-gray-700 cursor-pointer">2025</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <div class="custom-radio" id="year-2024"></div>
+                                    <input type="radio" name="year" id="year-2024"
+                                        class="h-4 w-4 text-blue-600 border-gray-300">
                                     <label for="year-2024"
                                         class="ml-2 text-sm text-gray-700 cursor-pointer">2024</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <div class="custom-radio" id="year-2023"></div>
+                                    <input type="radio" name="year" id="year-2023"
+                                        class="h-4 w-4 text-blue-600 border-gray-300">
                                     <label for="year-2023"
                                         class="ml-2 text-sm text-gray-700 cursor-pointer">2023</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <div class="custom-radio" id="year-older"></div>
+                                    <input type="radio" name="year" id="year-older"
+                                        class="h-4 w-4 text-blue-600 border-gray-300">
                                     <label for="year-older" class="ml-2 text-sm text-gray-700 cursor-pointer">2022 and
                                         older</label>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Type Filter -->
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
                             <div class="space-y-2">
                                 <div class="flex items-center">
-                                    <div class="custom-checkbox checked" id="type-article"></div>
+                                    <input type="checkbox" id="type-article"
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded" checked>
                                     <label for="type-article" class="ml-2 text-sm text-gray-700 cursor-pointer">Journal
                                         Article</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <div class="custom-checkbox checked" id="type-conference"></div>
+                                    <input type="checkbox" id="type-conference"
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded" checked>
                                     <label for="type-conference"
                                         class="ml-2 text-sm text-gray-700 cursor-pointer">Conference Paper</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <div class="custom-checkbox" id="type-review"></div>
+                                    <input type="checkbox" id="type-review"
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded">
                                     <label for="type-review"
                                         class="ml-2 text-sm text-gray-700 cursor-pointer">Review</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <div class="custom-checkbox" id="type-preprint"></div>
+                                    <input type="checkbox" id="type-preprint"
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded">
                                     <label for="type-preprint"
                                         class="ml-2 text-sm text-gray-700 cursor-pointer">Preprint</label>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Access Filter -->
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Access</label>
-                            <div class="space-y-2">
-                                <div class="flex items-center">
-                                    <div class="custom-switch checked" id="access-open"></div>
-                                    <label for="access-open" class="ml-2 text-sm text-gray-700 cursor-pointer">Open
-                                        Access Only</label>
-                                </div>
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="access-open"
+                                    class="h-4 w-4 text-blue-600 border-gray-300 rounded" checked>
+                                <label for="access-open" class="text-sm text-gray-700 cursor-pointer">Open Access
+                                    Only</label>
                             </div>
                         </div>
 
+                        <!-- Reset Button -->
                         <button
-                            class="w-full px-4 py-2 bg-white border border-gray-200 rounded text-gray-700 hover:bg-gray-50 text-sm !rounded-button whitespace-nowrap">Reset
-                            Filters</button>
+                            class="w-full px-4 py-2 bg-white border border-gray-200 rounded text-gray-700 hover:bg-gray-50 text-sm whitespace-nowrap">
+                            Reset Filters
+                        </button>
                     </div>
+
 
                     <!-- Papers List -->
                     <div class="flex-grow p-4">

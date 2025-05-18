@@ -2386,3 +2386,968 @@ document.addEventListener('DOMContentLoaded', function () {
         // ... rest of your code ...
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // --- Paper Data (expanded collection of academic papers) ---
+    const papers = [
+        {
+            id: 1,
+            title: "Transformers for Time Series Forecasting: A Comprehensive Survey",
+            authors: "Zhang, L., Chen, W., Tao, D., Wang, J., & Li, K.",
+            year: 2025,
+            type: "article",
+            subject: "cs",
+            journal: "IEEE Transactions on Neural Networks and Learning Systems",
+            citations: 287,
+            access: "open",
+            tags: ["Computer Science", "Open Access"],
+            description: "This survey provides a comprehensive overview of transformer-based models for time series forecasting, analyzing their architectures, training strategies, and performance across various domains."
+        },
+        {
+            id: 2,
+            title: "MultiModal-GPT: A Vision and Language Model for Dialogue with Humans",
+            authors: "Johnson, R., Patel, S., Garcia, M., & Smith, A.",
+            year: 2025,
+            type: "conference",
+            subject: "cs",
+            journal: "Proceedings of CVPR 2025",
+            citations: 156,
+            access: "conference",
+            tags: ["Computer Science", "Conference"],
+            description: "This paper introduces a novel architecture for integrating visual and textual information in large language models, enabling more natural multimodal interactions in conversational AI systems."
+        },
+        {
+            id: 3,
+            title: "CRISPR-Cas9 Optimization for Therapeutic Applications in Human Stem Cells",
+            authors: "Nguyen, H., Williams, E., Takahashi, K., & Brown, L.",
+            year: 2025,
+            type: "article",
+            subject: "bio",
+            journal: "Nature Biotechnology",
+            citations: 203,
+            access: "open",
+            tags: ["Biology", "Open Access"],
+            description: "This study presents novel methods for improving CRISPR-Cas9 efficiency and specificity in human stem cells, with implications for treating genetic disorders through targeted gene editing."
+        },
+        {
+            id: 4,
+            title: "The Impact of Digital Media Consumption on Adolescent Cognitive Development: A Longitudinal Study",
+            authors: "Thompson, J., Rodriguez, C., Kim, S., & Anderson, P.",
+            year: 2024,
+            type: "journal",
+            subject: "psych",
+            journal: "Journal of Developmental Psychology",
+            citations: 142,
+            access: "journal",
+            tags: ["Psychology", "Journal"],
+            description: "This 5-year longitudinal study examines how different patterns of digital media consumption affect cognitive development, attention, and social-emotional skills in adolescents aged 12-17."
+        },
+        {
+            id: 5,
+            title: "Quantum-Inspired Algorithms for Graph Neural Networks",
+            authors: "Lee, J., Gupta, R., Zhao, Y., & Miller, T.",
+            year: 2025,
+            type: "preprint",
+            subject: "cs",
+            journal: "arXiv",
+            citations: 87,
+            access: "preprint",
+            tags: ["Computer Science", "Preprint"],
+            description: "This paper proposes novel quantum-inspired classical algorithms that significantly improve the computational efficiency of graph neural networks for large-scale graph learning tasks."
+        },
+        {
+            id: 6,
+            title: "Deep Learning for Healthcare: Opportunities and Challenges",
+            authors: "Smith, J., Doe, A., & Johnson, L.",
+            year: 2024,
+            type: "journal",
+            subject: "bio",
+            journal: "Journal of Medical Internet Research",
+            citations: 120,
+            access: "open",
+            tags: ["Biology", "Open Access"],
+            description: "This paper explores the potential of deep learning in healthcare, discussing both the opportunities and challenges in implementing these technologies in clinical settings."
+        },
+        {
+            id: 7,
+            title: "Advancements in Quantum Computing: A Review",
+            authors: "Brown, C., White, D., & Green, E.",
+            year: 2023,
+            type: "conference",
+            subject: "cs",
+            journal: "Quantum Computing Conference 2023",
+            citations: 95,
+            access: "conference",
+            tags: ["Computer Science", "Conference"],
+            description: "A comprehensive review of recent advancements in quantum computing, highlighting key breakthroughs and future directions in the field."
+        },
+        {
+            id: 8,
+            title: "Neural Network Approaches for Climate Change Prediction",
+            authors: "Park, S., Ramirez, J., & Chen, H.",
+            year: 2024,
+            type: "article",
+            subject: "env",
+            journal: "Environmental Science & Technology",
+            citations: 175,
+            access: "journal",
+            tags: ["Environmental Science", "Journal"],
+            description: "This paper evaluates various neural network architectures for predicting climate patterns, comparing their accuracy against traditional forecasting methods across diverse geographical regions."
+        },
+        {
+            id: 9,
+            title: "Blockchain Applications in Supply Chain Management",
+            authors: "Wilson, T., Davis, M., & Martinez, E.",
+            year: 2023,
+            type: "article",
+            subject: "cs",
+            journal: "Journal of Business Logistics",
+            citations: 89,
+            access: "open",
+            tags: ["Computer Science", "Open Access"],
+            description: "An analysis of blockchain implementation in global supply chains, examining improved transparency, traceability, and security across multiple industry case studies."
+        },
+        {
+            id: 10,
+            title: "Ethical Considerations in Autonomous Vehicle Decision-Making",
+            authors: "Kumar, A., O'Brien, S., & Li, Q.",
+            year: 2025,
+            type: "conference",
+            subject: "ethics",
+            journal: "IEEE International Conference on Autonomous Systems",
+            citations: 112,
+            access: "conference",
+            tags: ["Ethics", "Conference"],
+            description: "This paper addresses the ethical frameworks governing decision-making algorithms in autonomous vehicles, particularly in unavoidable accident scenarios."
+        },
+        {
+            id: 11,
+            title: "Genetically Modified Crops and Food Security: A Global Analysis",
+            authors: "Rodriguez, M., Patel, K., & Singh, A.",
+            year: 2022,
+            type: "article",
+            subject: "bio",
+            journal: "Nature Food",
+            citations: 234,
+            access: "journal",
+            tags: ["Biology", "Journal"],
+            description: "A comprehensive analysis of GM crop adoption worldwide and its correlations with food security metrics, agricultural sustainability, and economic outcomes for farmers."
+        },
+        {
+            id: 12,
+            title: "Microplastics in Marine Ecosystems: Detection and Impact Assessment",
+            authors: "Chen, Y., Schmidt, H., & Nakamura, T.",
+            year: 2023,
+            type: "article",
+            subject: "env",
+            journal: "Marine Pollution Bulletin",
+            citations: 167,
+            access: "open",
+            tags: ["Environmental Science", "Open Access"],
+            description: "Novel methodologies for detecting microplastics in marine environments and an assessment of their ecological impacts across trophic levels."
+        },
+        {
+            id: 13,
+            title: "Attention Mechanisms in Natural Language Processing",
+            authors: "Sharma, P., Miller, J., & Wu, X.",
+            year: 2022,
+            type: "conference",
+            subject: "cs",
+            journal: "Proceedings of ACL 2022",
+            citations: 321,
+            access: "conference",
+            tags: ["Computer Science", "Conference"],
+            description: "A detailed examination of various attention mechanisms in NLP models, evaluating their effectiveness across different language understanding and generation tasks."
+        },
+        {
+            id: 14,
+            title: "Social Media and Political Polarization: Causal Relationships",
+            authors: "Roberts, E., Johnson, T., & Alvarez, C.",
+            year: 2024,
+            type: "journal",
+            subject: "psych",
+            journal: "Journal of Communication",
+            citations: 128,
+            access: "journal",
+            tags: ["Psychology", "Journal"],
+            description: "This research explores causal mechanisms through which social media algorithms and user behavior contribute to political polarization across different demographic groups."
+        },
+        {
+            id: 15,
+            title: "Optimizing Energy Consumption in Smart Cities through AI",
+            authors: "Wang, L., Garcia, P., & Brown, S.",
+            year: 2025,
+            type: "article",
+            subject: "env",
+            journal: "Sustainable Cities and Society",
+            citations: 97,
+            access: "open",
+            tags: ["Environmental Science", "Open Access"],
+            description: "A framework for integrating AI systems with urban infrastructure to optimize energy usage in transportation, buildings, and utilities while maintaining service quality."
+        },
+        {
+            id: 16,
+            title: "Biomarkers for Early Alzheimer's Detection: A Meta-Analysis",
+            authors: "Kang, H., Peterson, M., & Santos, J.",
+            year: 2023,
+            type: "article",
+            subject: "bio",
+            journal: "The Lancet Neurology",
+            citations: 289,
+            access: "journal",
+            tags: ["Biology", "Journal"],
+            description: "This meta-analysis evaluates the sensitivity and specificity of various biomarkers for early-stage Alzheimer's disease detection across multiple longitudinal studies."
+        },
+        {
+            id: 17,
+            title: "Reinforcement Learning for Robotics Control: Recent Advances",
+            authors: "Lee, S., Patel, V., & Anderson, K.",
+            year: 2024,
+            type: "preprint",
+            subject: "cs",
+            journal: "arXiv",
+            citations: 78,
+            access: "preprint",
+            tags: ["Computer Science", "Preprint"],
+            description: "A survey of recent reinforcement learning algorithms applied to robotic control systems, with emphasis on sample efficiency and transfer learning capabilities."
+        },
+        {
+            id: 18,
+            title: "Mindfulness-Based Interventions for Chronic Pain Management",
+            authors: "Williams, D., Chen, M., & Gonzalez, R.",
+            year: 2022,
+            type: "journal",
+            subject: "psych",
+            journal: "Clinical Psychology Review",
+            citations: 154,
+            access: "open",
+            tags: ["Psychology", "Open Access"],
+            description: "This systematic review analyzes the efficacy of mindfulness practices for chronic pain management across various pain conditions and patient populations."
+        },
+        {
+            id: 19,
+            title: "Zero-Shot Learning in Computer Vision: A Survey",
+            authors: "Kim, J., Patel, N., & Wong, A.",
+            year: 2025,
+            type: "conference",
+            subject: "cs",
+            journal: "IEEE Conference on Computer Vision and Pattern Recognition",
+            citations: 143,
+            access: "conference",
+            tags: ["Computer Science", "Conference"],
+            description: "A comprehensive survey of zero-shot learning methods in computer vision tasks, categorizing approaches and benchmarking performance across standard datasets."
+        },
+        {
+            id: 20,
+            title: "Circular Economy Principles in Manufacturing: Case Studies",
+            authors: "Muller, H., Jackson, T., & Yamamoto, K.",
+            year: 2023,
+            type: "article",
+            subject: "env",
+            journal: "Journal of Cleaner Production",
+            citations: 112,
+            access: "journal",
+            tags: ["Environmental Science", "Journal"],
+            description: "This paper presents case studies of successful circular economy implementation in manufacturing sectors, analyzing economic and environmental outcomes."
+        },
+        {
+            id: 21,
+            title: "Human-AI Collaboration in Creative Tasks",
+            authors: "Zhang, W., O'Connor, B., & Lee, M.",
+            year: 2024,
+            type: "conference",
+            subject: "cs",
+            journal: "CHI Conference on Human Factors in Computing Systems",
+            citations: 86,
+            access: "conference",
+            tags: ["Computer Science", "Conference"],
+            description: "An exploration of collaborative interfaces between humans and AI systems for creative tasks such as design, music composition, and storytelling."
+        },
+        {
+            id: 22,
+            title: "Forest Carbon Sequestration Potential Under Climate Change Scenarios",
+            authors: "Patel, R., Schneider, J., & Lopez, M.",
+            year: 2025,
+            type: "article",
+            subject: "env",
+            journal: "Global Change Biology",
+            citations: 92,
+            access: "open",
+            tags: ["Environmental Science", "Open Access"],
+            description: "Models predicting forest carbon sequestration capacity under various climate change scenarios, with implications for carbon offset policies and conservation strategies."
+        },
+        {
+            id: 23,
+            title: "The Neuroscience of Decision-Making Under Uncertainty",
+            authors: "Tan, L., Miller, S., & Cohen, J.",
+            year: 2022,
+            type: "journal",
+            subject: "psych",
+            journal: "Nature Neuroscience",
+            citations: 213,
+            access: "journal",
+            tags: ["Psychology", "Journal"],
+            description: "This study uses fMRI data to map neural correlates of decision-making processes under various types of uncertainty, with implications for economic and clinical applications."
+        },
+        {
+            id: 24,
+            title: "Federated Learning for Healthcare: Privacy-Preserving Analytics",
+            authors: "Gupta, S., Williams, T., & Chen, L.",
+            year: 2023,
+            type: "article",
+            subject: "cs",
+            journal: "BMC Medical Informatics and Decision Making",
+            citations: 176,
+            access: "open",
+            tags: ["Computer Science", "Open Access"],
+            description: "A framework for implementing federated learning in healthcare systems that maintains data privacy while enabling collaborative model training across institutions."
+        },
+        {
+            id: 25,
+            title: "Ethical Guidelines for AI in Educational Settings",
+            authors: "Johnson, K., Singh, P., & Martinez, L.",
+            year: 2024,
+            type: "conference",
+            subject: "ethics",
+            journal: "International Conference on AI in Education",
+            citations: 79,
+            access: "conference",
+            tags: ["Ethics", "Conference"],
+            description: "Proposed ethical frameworks for developing and deploying AI systems in educational environments, addressing issues of bias, transparency, and student data privacy."
+        }
+    ];
+
+    // --- State ---
+    let activeTab = 'recent'; // 'recent', 'cited', 'saved'
+    let filters = {
+        subject: new Set(['all']), // "all" selected by default
+        year: 'all',
+        type: new Set(['article', 'conference', 'journal', 'preprint']),
+        access: new Set(['open']),
+    };
+    let searchQuery = '';
+    let sortBy = 'date-desc'; // 'date-desc', 'date-asc', 'citations-desc', 'title-asc'
+    let savedPapers = new Set();
+    let currentPage = 1;
+    const pageSize = 5;
+
+    // --- DOM Elements ---
+    const tabBtns = document.querySelectorAll('#papers .border-b-2, #papers .hover\\:text-gray-700');
+    const paperList = document.querySelector('#papers .flex-grow.p-4 .space-y-4');
+    const filterSidebar = document.querySelector('#papers .md\\:w-64');
+    const searchInput = document.querySelector('#papers input[type="text"][placeholder="Search papers..."]');
+    const sortSelect = document.querySelector('#papers select');
+    const pagination = document.querySelector('#papers .mt-6.flex.justify-between.items-center .flex.space-x-1');
+
+    // --- Helper Functions ---
+    function getFilteredPapers() {
+        let result = papers.slice();
+
+        // Filter by tab
+        if (activeTab === 'saved') {
+            result = result.filter(p => savedPapers.has(p.id));
+        } else if (activeTab === 'cited') {
+            // In cited tab, prioritize papers with high citations
+            sortBy = 'citations-desc';
+        }
+
+        // Filter by subject
+        if (!filters.subject.has('all') && filters.subject.size > 0) {
+            result = result.filter(p => filters.subject.has(p.subject));
+        }
+
+        // Filter by year
+        if (filters.year !== 'all') {
+            if (filters.year === 'older') {
+                result = result.filter(p => p.year <= 2022);
+            } else {
+                result = result.filter(p => p.year == filters.year);
+            }
+        }
+
+        // Filter by type
+        if (filters.type.size > 0) {
+            result = result.filter(p => filters.type.has(p.type));
+        }
+
+        // Filter by access
+        if (filters.access.size > 0) {
+            result = result.filter(p => filters.access.has(p.access));
+        }
+
+        // Search
+        if (searchQuery.trim()) {
+            const q = searchQuery.trim().toLowerCase();
+            result = result.filter(p =>
+                p.title.toLowerCase().includes(q) ||
+                p.authors.toLowerCase().includes(q) ||
+                p.journal.toLowerCase().includes(q) ||
+                p.description.toLowerCase().includes(q) ||
+                p.tags.some(tag => tag.toLowerCase().includes(q))
+            );
+        }
+
+        // Sort
+        if (sortBy === 'date-desc') {
+            result.sort((a, b) => b.year - a.year);
+        } else if (sortBy === 'date-asc') {
+            result.sort((a, b) => a.year - b.year);
+        } else if (sortBy === 'citations-desc') {
+            result.sort((a, b) => b.citations - a.citations);
+        } else if (sortBy === 'title-asc') {
+            result.sort((a, b) => a.title.localeCompare(b.title));
+        }
+
+        return result;
+    }
+
+    function renderPapers() {
+        const filtered = getFilteredPapers();
+        const total = filtered.length;
+        const totalPages = Math.max(1, Math.ceil(total / pageSize));
+        currentPage = Math.min(currentPage, totalPages);
+
+        // Pagination
+        const start = (currentPage - 1) * pageSize;
+        const end = start + pageSize;
+        const pagePapers = filtered.slice(start, end);
+
+        // Render papers
+        paperList.innerHTML = '';
+        if (pagePapers.length === 0) {
+            paperList.innerHTML = `<div class="text-gray-500 text-center py-8">No papers found. Try adjusting your filters.</div>`;
+        } else {
+            for (const p of pagePapers) {
+                const accessBadge = p.access === 'open' 
+                    ? '<span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Open Access</span>' 
+                    : p.access === 'preprint' 
+                        ? '<span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Preprint</span>'
+                        : '<span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">Subscription</span>';
+                
+                paperList.innerHTML += `
+                <div class="bg-white border border-gray-200 rounded p-4 hover:shadow-md transition-shadow">
+                    <div class="flex justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            ${accessBadge}
+                            ${p.tags.map(tag => `<span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">${tag}</span>`).join('')}
+                        </div>
+                        <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-primary bookmark-btn" data-id="${p.id}">
+                            <i class="${savedPapers.has(p.id) ? 'ri-bookmark-fill text-primary' : 'ri-bookmark-line'}"></i>
+                        </button>
+                    </div>
+                    <h3 class="text-lg font-semibold mt-2 mb-1">${p.title}</h3>
+                    <p class="text-sm text-gray-500 mb-2">${p.authors} (${p.year})</p>
+                    <p class="text-gray-700 text-sm mb-3 line-clamp-2">${p.description}</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-500 mr-1">
+                                <i class="ri-file-list-line"></i>
+                            </div>
+                            <span class="text-xs text-gray-500">${p.journal}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-500 mr-1">
+                                <i class="ri-double-quotes-l"></i>
+                            </div>
+                            <span class="text-xs text-gray-500">Citations: ${p.citations}</span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+        }
+
+        // Render pagination
+        if (pagination) {
+            pagination.innerHTML = '';
+            if (totalPages > 1) {
+                // Prev
+                pagination.innerHTML += `<button class="w-8 h-8 flex items-center justify-center rounded border border-gray-200 text-gray-500 hover:bg-gray-50 page-btn" data-page="${Math.max(1, currentPage - 1)}"><i class="ri-arrow-left-s-line"></i></button>`;
+                
+                // Page numbers (with ellipsis for many pages)
+                const maxVisiblePages = 5;
+                let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                
+                if (endPage - startPage < maxVisiblePages - 1) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
+                
+                // First page
+                if (startPage > 1) {
+                    pagination.innerHTML += `<button class="w-8 h-8 flex items-center justify-center rounded border border-gray-200 text-gray-700 hover:bg-gray-50 page-btn" data-page="1">1</button>`;
+                    if (startPage > 2) {
+                        pagination.innerHTML += `<span class="text-gray-500 px-2">...</span>`;
+                    }
+                }
+                
+                // Page numbers
+                for (let i = startPage; i <= endPage; i++) {
+                    pagination.innerHTML += `<button class="w-8 h-8 flex items-center justify-center rounded border border-gray-200 ${i === currentPage ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-50'} page-btn" data-page="${i}">${i}</button>`;
+                }
+                
+                // Last page
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        pagination.innerHTML += `<span class="text-gray-500 px-2">...</span>`;
+                    }
+                    pagination.innerHTML += `<button class="w-8 h-8 flex items-center justify-center rounded border border-gray-200 text-gray-700 hover:bg-gray-50 page-btn" data-page="${totalPages}">${totalPages}</button>`;
+                }
+                
+                // Next
+                pagination.innerHTML += `<button class="w-8 h-8 flex items-center justify-center rounded border border-gray-200 text-gray-500 hover:bg-gray-50 page-btn" data-page="${Math.min(totalPages, currentPage + 1)}"><i class="ri-arrow-right-s-line"></i></button>`;
+            }
+        }
+
+        // Update count
+        const countDiv = document.querySelector('#papers .mt-6.flex.justify-between.items-center .text-sm.text-gray-500');
+        if (countDiv) {
+            countDiv.textContent = `Showing ${start + 1}-${Math.min(total, end)} of ${total} papers`;
+        }
+
+        // Bookmark event
+        document.querySelectorAll('.bookmark-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const id = Number(btn.dataset.id);
+                if (savedPapers.has(id)) {
+                    savedPapers.delete(id);
+                    // Update icon
+                    btn.querySelector('i').className = 'ri-bookmark-line';
+                } else {
+                    savedPapers.add(id);
+                    // Update icon
+                    btn.querySelector('i').className = 'ri-bookmark-fill text-primary';
+                }
+                
+                // Re-render if on saved tab
+                if (activeTab === 'saved') {
+                    renderPapers();
+                }
+            });
+        });
+
+        // Pagination event
+        document.querySelectorAll('.page-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const page = Number(btn.dataset.page);
+                if (!isNaN(page)) {
+                    currentPage = page;
+                    renderPapers();
+                    // Scroll to top of paper list
+                    paperList.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    }
+
+    // --- Tab Switching ---
+    tabBtns.forEach((btn, idx) => {
+        btn.addEventListener('click', function () {
+            tabBtns.forEach(b => {
+                b.classList.remove('text-primary', 'border-b-2', 'border-primary');
+                b.classList.add('hover:text-gray-700', 'text-gray-500');
+            });
+            btn.classList.add('text-primary', 'border-b-2', 'border-primary');
+            btn.classList.remove('hover:text-gray-700', 'text-gray-500');
+            
+            activeTab = idx === 0 ? 'recent' : idx === 1 ? 'cited' : 'saved';
+            
+            // Change sort for tabs
+            if (activeTab === 'cited') {
+                sortBy = 'citations-desc';
+                if (sortSelect) {
+                    sortSelect.value = "Most Citations";
+                }
+            } else if (activeTab === 'recent') {
+                sortBy = 'date-desc';
+                if (sortSelect) {
+                    sortSelect.value = "Newest First";
+                }
+            }
+            
+            currentPage = 1;
+            renderPapers();
+        });
+    });
+
+    // --- Filter Sidebar ---
+    // Subject
+    filterSidebar.querySelectorAll('[id^="subject-"]').forEach(cb => {
+        cb.addEventListener('click', function () {
+            const id = cb.id.replace('subject-', '');
+            if (id === 'all') {
+                // If "all" is clicked, select only "all"
+                filters.subject = new Set(['all']);
+                // Update UI
+                filterSidebar.querySelectorAll('[id^="subject-"]').forEach(box => {
+                    if (box.id === 'subject-all') box.classList.add('checked');
+                    else box.classList.remove('checked');
+                });
+            } else {
+                // Toggle subject
+                if (filters.subject.has('all')) {
+                    filters.subject = new Set();
+                    filterSidebar.querySelector('#subject-all').classList.remove('checked');
+                }
+                if (cb.classList.contains('checked')) {
+                    cb.classList.remove('checked');
+                    filters.subject.delete(id);
+                } else {
+                    cb.classList.add('checked');
+                    filters.subject.add(id);
+                }
+                // If none selected, revert to "all"
+                if (filters.subject.size === 0) {
+                    filters.subject = new Set(['all']);
+                    filterSidebar.querySelector('#subject-all').classList.add('checked');
+                }
+            }
+            currentPage = 1;
+            renderPapers();
+        });
+    });
+    
+    // Year
+    filterSidebar.querySelectorAll('[id^="year-"]').forEach(rb => {
+        rb.addEventListener('click', function () {
+            filterSidebar.querySelectorAll('[id^="year-"]').forEach(r => r.classList.remove('checked'));
+            rb.classList.add('checked');
+            const id = rb.id.replace('year-', '');
+            filters.year = id;
+            currentPage = 1;
+            renderPapers();
+        });
+    });
+    
+    // Type
+    filterSidebar.querySelectorAll('[id^="type-"]').forEach(cb => {
+        cb.addEventListener('click', function () {
+            const id = cb.id.replace('type-', '');
+            if (cb.classList.contains('checked')) {
+                cb.classList.remove('checked');
+                filters.type.delete(id);
+            } else {
+                cb.classList.add('checked');
+                filters.type.add(id);
+            }
+            // Ensure at least one type is selected
+            if (filters.type.size === 0) {
+                cb.classList.add('checked');
+                filters.type.add(id);
+            }
+            currentPage = 1;
+            renderPapers();
+        });
+    });
+    
+    // Access
+    filterSidebar.querySelectorAll('[id^="access-"]').forEach(cb => {
+        cb.addEventListener('click', function () {
+            const id = cb.id.replace('access-', '');
+            if (cb.classList.contains('checked')) {
+                cb.classList.remove('checked');
+                filters.access.delete(id);
+            } else {
+                cb.classList.add('checked');
+                filters.access.add(id);
+            }
+            currentPage = 1;
+            renderPapers();
+        });
+    });
+    
+    // Reset Filters
+    const resetBtn = filterSidebar.querySelector('button');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+            // Reset all filters to default
+            filters.subject = new Set(['all']);
+            filters.year = 'all';
+            filters.type = new Set(['article', 'conference', 'journal', 'preprint']);
+            filters.access = new Set(['open']);
+            
+            // Reset UI
+            // Subject checkboxes
+            filterSidebar.querySelectorAll('[id^="subject-"]').forEach(cb => {
+                if (cb.id === 'subject-all') {
+                    cb.classList.add('checked');
+                } else {
+                    cb.classList.remove('checked');
+                }
+            });
+            
+            // Year radio buttons
+            filterSidebar.querySelectorAll('[id^="year-"]').forEach(rb => {
+                if (rb.id === 'year-all') {
+                    rb.classList.add('checked');
+                } else {
+                    rb.classList.remove('checked');
+                }
+            });
+            
+            // Type checkboxes
+            filterSidebar.querySelectorAll('[id^="type-"]').forEach(cb => {
+                cb.classList.add('checked');
+                filters.type.add(cb.id.replace('type-', ''));
+            });
+            
+            // Access checkboxes
+            filterSidebar.querySelectorAll('[id^="access-"]').forEach(cb => {
+                if (cb.id === 'access-open') {
+                    cb.classList.add('checked');
+                } else {
+                    cb.classList.remove('checked');
+                }
+            });
+            
+            currentPage = 1;
+            renderPapers();
+        });
+    }
+
+    // --- Search ---
+    if (searchInput) {
+        // Add clear search button functionality
+        const searchWrapper = searchInput.parentElement;
+        const clearBtn = document.createElement('button');
+        clearBtn.className = 'absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600';
+        clearBtn.innerHTML = '<i class="ri-close-line"></i>';
+        clearBtn.style.display = 'none';
+        searchWrapper.style.position = 'relative';
+        searchWrapper.appendChild(clearBtn);
+        
+        searchInput.addEventListener('input', function() {
+            searchQuery = searchInput.value;
+            clearBtn.style.display = searchQuery ? 'block' : 'none';
+            currentPage = 1;
+            renderPapers();
+        });
+        
+        clearBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            searchQuery = '';
+            clearBtn.style.display = 'none';
+            currentPage = 1;
+            renderPapers();
+        });
+        
+        // Add keypress event for search
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchQuery = searchInput.value;
+                currentPage = 1;
+                renderPapers();
+            }
+        });
+    }
+
+    // --- Sort ---
+    if (sortSelect) {
+        sortSelect.addEventListener('change', function() {
+            const val = sortSelect.value;
+            if (val.includes('Newest')) sortBy = 'date-desc';
+            else if (val.includes('Oldest')) sortBy = 'date-asc';
+            else if (val.includes('Citations')) sortBy = 'citations-desc';
+            else if (val.includes('Title')) sortBy = 'title-asc';
+            currentPage = 1;
+            renderPapers();
+        });
+    }
+    
+    
+    // --- Paper Details Modal ---
+    // Create modal container
+    const modalContainer = document.createElement('div');
+    modalContainer.id = 'paper-modal';
+    modalContainer.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden';
+    document.body.appendChild(modalContainer);
+    
+    modalContainer.innerHTML = `
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold modal-title">Paper Title</h2>
+                <button class="text-gray-500 hover:text-gray-700" id="close-modal">
+                    <i class="ri-close-line text-2xl"></i>
+                </button>
+            </div>
+            <div id="modal-content" class="space-y-4">
+                <!-- Modal content will be inserted here -->
+            </div>
+            <div class="mt-6 flex justify-end">
+                <button class="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark" id="close-modal-btn">Close</button>
+            </div>
+        </div>
+    `;
+    
+    // Close modal functionality
+    document.getElementById('close-modal').addEventListener('click', () => {
+        modalContainer.classList.add('hidden');
+    });
+    document.getElementById('close-modal-btn').addEventListener('click', () => {
+        modalContainer.classList.add('hidden');
+    });
+    
+    // Close when clicking outside the modal
+    modalContainer.addEventListener('click', (e) => {
+        if (e.target === modalContainer) {
+            modalContainer.classList.add('hidden');
+        }
+    });
+    
+    // Open paper details modal when clicking on paper
+    function setupPaperClickEvents() {
+        const paperItems = document.querySelectorAll('#papers .bg-white.border');
+        paperItems.forEach(item => {
+            // Don't attach to the bookmark button
+            const titleElement = item.querySelector('h3');
+            if (titleElement) {
+                titleElement.style.cursor = 'pointer';
+                titleElement.addEventListener('click', function() {
+                    const title = this.textContent;
+                    const paper = papers.find(p => p.title === title);
+                    
+                    if (paper) {
+                        // Update modal content
+                        document.querySelector('.modal-title').textContent = paper.title;
+                        
+                        const modalContent = document.getElementById('modal-content');
+                        modalContent.innerHTML = `
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                ${paper.tags.map(tag => `<span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">${tag}</span>`).join('')}
+                                ${paper.access === 'open' 
+                                    ? '<span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Open Access</span>' 
+                                    : paper.access === 'preprint' 
+                                        ? '<span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Preprint</span>'
+                                        : '<span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">Subscription</span>'
+                                }
+                            </div>
+                            <div class="mb-4">
+                                <p class="text-gray-700"><strong>Authors:</strong> ${paper.authors}</p>
+                                <p class="text-gray-700"><strong>Year:</strong> ${paper.year}</p>
+                                <p class="text-gray-700"><strong>Journal/Conference:</strong> ${paper.journal}</p>
+                                <p class="text-gray-700"><strong>Citations:</strong> ${paper.citations}</p>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="font-semibold mb-2">Abstract</h4>
+                                <p class="text-gray-700">${paper.description}</p>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="font-semibold mb-2">Keywords</h4>
+                                <p class="text-gray-700">Machine Learning, ${paper.tags.join(', ')}, Research</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded">
+                                <h4 class="font-semibold mb-2">How to cite</h4>
+                                <p class="text-sm font-mono bg-gray-100 p-3 rounded">
+                                    ${paper.authors} (${paper.year}). ${paper.title}. <em>${paper.journal}</em>.
+                                </p>
+                                <button class="mt-2 px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm hover:bg-gray-300" id="copy-citation">
+                                    <i class="ri-file-copy-line mr-1"></i> Copy citation
+                                </button>
+                            </div>
+                        `;
+                        
+                        // Show modal
+                        modalContainer.classList.remove('hidden');
+                        
+                        // Copy citation functionality
+                        document.getElementById('copy-citation').addEventListener('click', function() {
+                            const citation = `${paper.authors} (${paper.year}). ${paper.title}. ${paper.journal}.`;
+                            navigator.clipboard.writeText(citation).then(() => {
+                                this.textContent = 'Copied!';
+                                setTimeout(() => {
+                                    this.innerHTML = '<i class="ri-file-copy-line mr-1"></i> Copy citation';
+                                }, 2000);
+                            });
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    // --- Initial Render ---
+    renderPapers();
+    
+    // Setup click events after initial render
+    setupPaperClickEvents();
+    
+    // Update click events after each paper list render
+    const originalRenderPapers = renderPapers;
+    renderPapers = function() {
+        originalRenderPapers();
+        setupPaperClickEvents();
+    };
+});
+
+// JavaScript to make the custom filter components interactive
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle custom checkboxes
+    document.querySelectorAll('.custom-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('click', function() {
+        // Toggle the checked state
+        this.classList.toggle('checked');
+        
+        // If this is the "All" checkbox in subjects, handle accordingly
+        if (this.id === 'subject-all' && this.classList.contains('checked')) {
+          // Uncheck all other subject checkboxes
+          document.querySelectorAll('.custom-checkbox[id^="subject-"]:not(#subject-all)').forEach(subjectCheckbox => {
+            subjectCheckbox.classList.remove('checked');
+          });
+        }
+        
+        // If any subject checkbox other than "All" is checked, uncheck the "All" checkbox
+        if (this.id.startsWith('subject-') && this.id !== 'subject-all' && this.classList.contains('checked')) {
+          document.getElementById('subject-all').classList.remove('checked');
+        }
+      });
+    });
+    
+    // Handle custom radio buttons
+    document.querySelectorAll('.custom-radio').forEach(radio => {
+      radio.addEventListener('click', function() {
+        // Get the group name from id prefix (e.g., "year" from "year-all")
+        const groupName = this.id.split('-')[0];
+        
+        // Uncheck all radio buttons in the same group
+        document.querySelectorAll(`.custom-radio[id^="${groupName}-"]`).forEach(groupRadio => {
+          groupRadio.classList.remove('checked');
+        });
+        
+        // Check this radio button
+        this.classList.add('checked');
+      });
+    });
+    
+    // Handle custom switches
+    document.querySelectorAll('.custom-switch').forEach(switchEl => {
+      switchEl.addEventListener('click', function() {
+        this.classList.toggle('checked');
+      });
+    });
+    
+    // Handle Reset Filters button
+    document.querySelector('button').addEventListener('click', function() {
+      // Reset Subject filters - check only "All"
+      document.querySelectorAll('.custom-checkbox[id^="subject-"]').forEach(checkbox => {
+        checkbox.classList.remove('checked');
+      });
+      document.getElementById('subject-all').classList.add('checked');
+      
+      // Reset Year filters - check only "All Years"
+      document.querySelectorAll('.custom-radio[id^="year-"]').forEach(radio => {
+        radio.classList.remove('checked');
+      });
+      document.getElementById('year-all').classList.add('checked');
+      
+      // Reset Type filters - check default options
+      document.querySelectorAll('.custom-checkbox[id^="type-"]').forEach(checkbox => {
+        checkbox.classList.remove('checked');
+      });
+      document.getElementById('type-article').classList.add('checked');
+      document.getElementById('type-conference').classList.add('checked');
+      
+      // Reset Access filter
+      document.getElementById('access-open').classList.add('checked');
+    });
+  });
