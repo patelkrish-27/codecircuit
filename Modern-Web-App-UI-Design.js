@@ -2716,7 +2716,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sortSelect = document.querySelector('#papers select');
     const pagination = document.querySelector('#papers .mt-6.flex.justify-between.items-center .flex.space-x-1');
 
-    // --- Helper Functions ---
+  // --- Helper Functions ---
     function getFilteredPapers() {
         let result = papers.slice();
 
@@ -2724,7 +2724,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (activeTab === 'saved') {
             result = result.filter(p => savedPapers.has(p.id));
         } else if (activeTab === 'cited') {
-            // In cited tab, prioritize papers with high citations
             sortBy = 'citations-desc';
         }
 
@@ -2777,7 +2776,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         return result;
     }
-
     function renderPapers() {
         const filtered = getFilteredPapers();
         const total = filtered.length;
@@ -3028,10 +3026,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 cb.classList.add('checked');
                 filters.access.add(id);
             }
+
+            // Update access filter logic
+            if (filters.access.has('open')) {
+                filters.access = new Set(['open']);
+            } else {
+                filters.access = new Set(['subscription']);
+            }
+
             currentPage = 1;
             renderPapers();
         });
     });
+
     
     // Reset Filters
     const resetBtn = filterSidebar.querySelector('button');
