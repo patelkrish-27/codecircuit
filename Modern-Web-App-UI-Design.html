@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
     <script>tailwind.config = { theme: { extend: { colors: { primary: '#4f46e5', secondary: '#f97316' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
     <link rel="stylesheet" href="Modern-Web-App-UI-Design.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 
 <body>
@@ -78,8 +79,9 @@
                     </button>
 
                 </div>
-                 <!-- Filter Modal -->
-                <div id="filter-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <!-- Filter Modal -->
+                <div id="filter-modal"
+                    class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
                     <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 m-4">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-lg font-semibold">Filter by Category</h3>
@@ -91,10 +93,12 @@
                             <!-- Tags will be dynamically inserted here -->
                         </div>
                         <div class="flex justify-end space-x-3">
-                            <button id="clear-filters" class="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50">
+                            <button id="clear-filters"
+                                class="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50">
                                 Clear All
                             </button>
-                            <button id="apply-filters" class="px-4 py-2 bg-primary text-white rounded hover:bg-indigo-700">
+                            <button id="apply-filters"
+                                class="px-4 py-2 bg-primary text-white rounded hover:bg-indigo-700">
                                 Apply Filters
                             </button>
                         </div>
@@ -133,7 +137,8 @@
                     </div>
 
                     <div class="mt-6 flex items-center justify-center">
-                        <div class="custom-checkbox" id="gdpr-checkbox"></div>
+                        <input type="checkbox" id="gdpr-checkbox"
+                            class="accent-primary w-5 h-5 rounded border-gray-300 focus:ring-2 focus:ring-primary">
                         <label for="gdpr-checkbox" class="ml-2 text-sm text-white cursor-pointer">I agree to receive
                             marketing emails and accept the <a href="#" class="underline">Privacy Policy</a></label>
                     </div>
@@ -152,11 +157,12 @@
 
         <!-- Podcast List -->
         <section id="podcasts" class="mb-16">
+            <!-- Updated Search Bar HTML -->
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-2xl font-bold">Featured Podcasts</h2>
                 <div class="relative w-64">
                     <input type="text" id="podcast-search" placeholder="Search episodes..."
-                        class="w-full pl-10 pr-4 py-2 rounded bg-white border border-gray-200 focus:ring-2 focus:ring-primary focus:outline-none text-sm">
+                        class="w-full pl-10 pr-4 py-2 rounded bg-white border border-gray-200 focus:outline-none text-sm" />
                     <div class="absolute left-3 top-2.5 w-4 h-4 flex items-center justify-center text-gray-500">
                         <i class="ri-search-line"></i>
                     </div>
@@ -165,10 +171,10 @@
 
             <div class="space-y-4">
                 <!-- Podcast Episode 1 -->
-                <div class="bg-white rounded shadow-sm p-4 flex flex-col md:flex-row gap-4">
+                <div class="podcast-episode bg-white rounded shadow-sm p-4 flex flex-col md:flex-row gap-4">
                     <div class="md:w-48 h-48 md:h-auto flex-shrink-0">
                         <img src="https://readdy.ai/api/search-image?query=podcast%20microphone%20setup%2C%20professional%20audio%20equipment%2C%20studio%20recording%20environment%2C%20sound%20engineering%2C%20high%20quality%20professional%20photo&width=400&height=400&seq=7&orientation=squarish"
-                            alt="Podcast thumbnail" class="w-full h-full object-cover object-top rounded">
+                            alt="Podcast thumbnail" class="w-full h-full object-cover object-top rounded" />
                     </div>
                     <div class="flex-grow">
                         <div class="flex flex-wrap gap-2 mb-2">
@@ -177,10 +183,14 @@
                             <span
                                 class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Business</span>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">The Future of AI in Business Operations</h3>
-                        <p class="text-gray-600 mb-4">In this episode, we talk with Dr. Sarah Chen, AI researcher and
-                            consultant, about how artificial intelligence is transforming business operations and what
-                            companies should prepare for in the next decade.</p>
+                        <h3 class="text-xl font-semibold mb-2">
+                            The Future of AI in Business Operations
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            In this episode, we talk with Dr. Sarah Chen, AI researcher and
+                            consultant, about how artificial intelligence is transforming business
+                            operations and what companies should prepare for in the next decade.
+                        </p>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
                                 <span class="text-sm text-gray-500 mr-4">45:18</span>
@@ -205,10 +215,10 @@
                 </div>
 
                 <!-- Podcast Episode 2 -->
-                <div class="bg-white rounded shadow-sm p-4 flex flex-col md:flex-row gap-4">
+                <div class="podcast-episode bg-white rounded shadow-sm p-4 flex flex-col md:flex-row gap-4">
                     <div class="md:w-48 h-48 md:h-auto flex-shrink-0">
                         <img src="https://readdy.ai/api/search-image?query=health%20and%20wellness%20concept%2C%20meditation%20practice%2C%20fitness%20equipment%2C%20nutritious%20food%2C%20balanced%20lifestyle%2C%20high%20quality%20professional%20photo&width=400&height=400&seq=8&orientation=squarish"
-                            alt="Podcast thumbnail" class="w-full h-full object-cover object-top rounded">
+                            alt="Podcast thumbnail" class="w-full h-full object-cover object-top rounded" />
                     </div>
                     <div class="flex-grow">
                         <div class="flex flex-wrap gap-2 mb-2">
@@ -217,10 +227,14 @@
                             <span
                                 class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">Wellness</span>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">Holistic Health: Integrating Mind and Body Wellness</h3>
-                        <p class="text-gray-600 mb-4">Dr. Michael Rodriguez discusses the latest research on the
-                            mind-body connection and practical strategies for achieving holistic health through
-                            integrated wellness practices.</p>
+                        <h3 class="text-xl font-semibold mb-2">
+                            Holistic Health: Integrating Mind and Body Wellness
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Dr. Michael Rodriguez discusses the latest research on the mind-body
+                            connection and practical strategies for achieving holistic health
+                            through integrated wellness practices.
+                        </p>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
                                 <span class="text-sm text-gray-500 mr-4">38:42</span>
@@ -245,10 +259,10 @@
                 </div>
 
                 <!-- Podcast Episode 3 -->
-                <div class="bg-white rounded shadow-sm p-4 flex flex-col md:flex-row gap-4">
+                <div class="podcast-episode bg-white rounded shadow-sm p-4 flex flex-col md:flex-row gap-4">
                     <div class="md:w-48 h-48 md:h-auto flex-shrink-0">
                         <img src="https://readdy.ai/api/search-image?query=financial%20investment%20concept%2C%20stock%20market%20charts%2C%20business%20analysis%2C%20economic%20growth%2C%20wealth%20management%2C%20high%20quality%20professional%20photo&width=400&height=400&seq=9&orientation=squarish"
-                            alt="Podcast thumbnail" class="w-full h-full object-cover object-top rounded">
+                            alt="Podcast thumbnail" class="w-full h-full object-cover object-top rounded" />
                     </div>
                     <div class="flex-grow">
                         <div class="flex flex-wrap gap-2 mb-2">
@@ -257,10 +271,14 @@
                             <span
                                 class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">Investing</span>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">Sustainable Investing: Profit with Purpose</h3>
-                        <p class="text-gray-600 mb-4">Financial advisor Emily Washington explains how environmental,
-                            social, and governance (ESG) investing is reshaping the financial landscape and how
-                            investors can align their portfolios with their values.</p>
+                        <h3 class="text-xl font-semibold mb-2">
+                            Sustainable Investing: Profit with Purpose
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Financial advisor Emily Washington explains how environmental, social,
+                            and governance (ESG) investing is reshaping the financial landscape and
+                            how investors can align their portfolios with their values.
+                        </p>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
                                 <span class="text-sm text-gray-500 mr-4">52:07</span>
@@ -285,27 +303,29 @@
                 </div>
 
                 <!-- Podcast Episode 4 -->
-                <div class="bg-white rounded shadow-sm p-4 flex flex-col md:flex-row gap-4">
+                <div class="podcast-episode bg-white rounded shadow-sm p-4 flex flex-col md:flex-row gap-4">
                     <div class="md:w-48 h-48 md:h-auto flex-shrink-0">
                         <img src="https://readdy.ai/api/search-image?query=creative%20writing%20process%2C%20author%20workspace%2C%20literature%20inspiration%2C%20storytelling%20concept%2C%20book%20publishing%2C%20high%20quality%20professional%20photo&width=400&height=400&seq=10&orientation=squarish"
-                            alt="Podcast thumbnail" class="w-full h-full object-cover object-top rounded">
+                            alt="Podcast thumbnail" class="w-full h-full object-cover object-top rounded" />
                     </div>
                     <div class="flex-grow">
                         <div class="flex flex-wrap gap-2 mb-2">
                             <span
-                                class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Writing</span>
+                                class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded">Literature</span>
                             <span
-                                class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded">Creativity</span>
+                                class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Writing</span>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">The Craft of Storytelling: Lessons from Bestselling
-                            Authors</h3>
-                        <p class="text-gray-600 mb-4">Award-winning novelist James Patterson shares insights into his
-                            creative process, the elements of compelling storytelling, and how aspiring writers can
-                            develop their unique voice.</p>
+                        <h3 class="text-xl font-semibold mb-2">
+                            Crafting Compelling Characters in Fiction
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Author and writing coach Lisa Tran shares techniques to develop rich,
+                            believable characters that engage readers and drive your story forward.
+                        </p>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
-                                <span class="text-sm text-gray-500 mr-4">41:35</span>
-                                <span class="text-sm text-gray-500">April 21, 2025</span>
+                                <span class="text-sm text-gray-500 mr-4">41:33</span>
+                                <span class="text-sm text-gray-500">April 20, 2025</span>
                             </div>
                             <div class="flex items-center space-x-2">
                                 <button
@@ -325,331 +345,25 @@
                     </div>
                 </div>
             </div>
-
-            <div class="mt-8 flex justify-center">
-                <button
-                    class="bg-white border border-gray-200 text-gray-700 px-5 py-2 rounded shadow-sm hover:bg-gray-50 !rounded-button whitespace-nowrap">View
-                    All Episodes</button>
-            </div>
-        </section>
-
-        <!-- Advanced Podcast Player -->
-        <section class="mb-16 bg-white rounded-lg shadow-sm p-6">
-            <h2 class="text-2xl font-bold mb-6">Featured Episode</h2>
-
-            <div class="mb-6">
-                <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h3 class="text-xl font-semibold">The Psychology of Productivity</h3>
-                        <p class="text-gray-600">With Dr. Alexandra Thompson</p>
-                    </div>
-                    <span class="text-sm text-gray-500">56:23</span>
-                </div>
-
-                <!-- Custom Audio Player -->
-                <div class="bg-gray-100 rounded-lg p-4">
-                    <div class="flex items-center space-x-4 mb-4">
-                        <button
-                            class="w-12 h-12 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary/90">
-                            <i class="ri-play-fill text-xl"></i>
-                        </button>
-
-                        <div class="flex-grow">
-                            <div class="relative w-full h-10">
-                                <div class="absolute inset-0 flex items-center">
-                                    <div class="h-1 w-full bg-gray-300 rounded">
-                                        <div class="h-1 bg-primary rounded" style="width: 35%"></div>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="absolute h-4 w-4 bg-primary rounded-full top-3 left-[35%] -ml-2 cursor-pointer">
-                                </div>
-
-                                <div
-                                    class="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-gray-500">
-                                    <span>19:41</span>
-                                    <span>56:23</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-3">
-                            <button class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary">
-                                <i class="ri-rewind-line"></i>
-                            </button>
-                            <button class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary">
-                                <i class="ri-speed-line"></i>
-                            </button>
-                            <button class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary">
-                                <i class="ri-volume-up-line"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Waveform Visualization -->
-                    <div class="h-16 w-full bg-white rounded mb-2 overflow-hidden">
-                        <div id="waveform" class="w-full h-full"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Episode Notes -->
-            <div>
-                <h4 class="text-lg font-semibold mb-3">Episode Notes</h4>
-                <div class="space-y-3">
-                    <div class="flex">
-                        <span class="text-sm font-medium text-gray-500 w-16">02:14</span>
-                        <p class="text-gray-700">Introduction to cognitive psychology principles for productivity</p>
-                    </div>
-                    <div class="flex">
-                        <span class="text-sm font-medium text-gray-500 w-16">08:37</span>
-                        <p class="text-gray-700">The science behind deep work and flow states</p>
-                    </div>
-                    <div class="flex">
-                        <span class="text-sm font-medium text-gray-500 w-16">15:22</span>
-                        <p class="text-gray-700">Common productivity myths debunked with research</p>
-                    </div>
-                    <div class="flex">
-                        <span class="text-sm font-medium text-gray-500 w-16">23:45</span>
-                        <p class="text-gray-700">Practical techniques for overcoming procrastination</p>
-                    </div>
-                    <div class="flex">
-                        <span class="text-sm font-medium text-gray-500 w-16">31:18</span>
-                        <p class="text-gray-700">The role of environment in productivity optimization</p>
-                    </div>
-                    <div class="flex">
-                        <span class="text-sm font-medium text-gray-500 w-16">42:05</span>
-                        <p class="text-gray-700">Digital tools and systems for maintaining focus</p>
-                    </div>
-                    <div class="flex">
-                        <span class="text-sm font-medium text-gray-500 w-16">49:30</span>
-                        <p class="text-gray-700">Q&A session with audience questions</p>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- Quote Board -->
         <section id="quotes" class="mb-16">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-2xl font-bold">Inspirational Quotes</h2>
-                <div class="flex space-x-2">
-                    <button
-                        class="px-4 py-2 rounded bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 active:bg-primary active:text-white active:border-primary !rounded-button whitespace-nowrap">All</button>
-                    <button
-                        class="px-4 py-2 rounded bg-primary text-white border border-primary hover:bg-primary/90 !rounded-button whitespace-nowrap">Motivation</button>
-                    <button
-                        class="px-4 py-2 rounded bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 !rounded-button whitespace-nowrap">Humor</button>
-                    <button
-                        class="px-4 py-2 rounded bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 !rounded-button whitespace-nowrap">Wisdom</button>
+                <div class="flex space-x-2" id="quote-category-filters">
+                    <button data-category="All"
+                        class="px-4 py-2 rounded bg-primary text-white border border-primary !rounded-button whitespace-nowrap">All</button>
+                    <button data-category="Motivation"
+                        class="px-4 py-2 rounded bg-white text-gray-700 border border-gray-200 !rounded-button whitespace-nowrap">Motivation</button>
+                    <button data-category="Humor"
+                        class="px-4 py-2 rounded bg-white text-gray-700 border border-gray-200 !rounded-button whitespace-nowrap">Humor</button>
+                    <button data-category="Wisdom"
+                        class="px-4 py-2 rounded bg-white text-gray-700 border border-gray-200 !rounded-button whitespace-nowrap">Wisdom</button>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Quote 1 -->
-                <div class="bg-white rounded shadow-sm p-6">
-                    <div class="flex justify-between mb-4">
-                        <span
-                            class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Motivation</span>
-                        <div class="flex">
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-gray-300">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <blockquote class="text-lg italic text-gray-700 mb-4">"The future belongs to those who believe in
-                        the beauty of their dreams."</blockquote>
-                    <div class="flex justify-between items-center">
-                        <cite class="text-sm font-medium text-gray-600">— Eleanor Roosevelt</cite>
-                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary">
-                            <i class="ri-share-line"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Quote 2 -->
-                <div class="bg-white rounded shadow-sm p-6">
-                    <div class="flex justify-between mb-4">
-                        <span
-                            class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Motivation</span>
-                        <div class="flex">
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <blockquote class="text-lg italic text-gray-700 mb-4">"The only way to do great work is to love what
-                        you do. If you haven't found it yet, keep looking. Don't settle."</blockquote>
-                    <div class="flex justify-between items-center">
-                        <cite class="text-sm font-medium text-gray-600">— Steve Jobs</cite>
-                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary">
-                            <i class="ri-share-line"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Quote 3 -->
-                <div class="bg-white rounded shadow-sm p-6">
-                    <div class="flex justify-between mb-4">
-                        <span
-                            class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">Humor</span>
-                        <div class="flex">
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-gray-300">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-gray-300">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <blockquote class="text-lg italic text-gray-700 mb-4">"I'm not superstitious, but I am a little
-                        stitious."</blockquote>
-                    <div class="flex justify-between items-center">
-                        <cite class="text-sm font-medium text-gray-600">— Michael Scott</cite>
-                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary">
-                            <i class="ri-share-line"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Quote 4 -->
-                <div class="bg-white rounded shadow-sm p-6">
-                    <div class="flex justify-between mb-4">
-                        <span
-                            class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Wisdom</span>
-                        <div class="flex">
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <blockquote class="text-lg italic text-gray-700 mb-4">"The greatest glory in living lies not in
-                        never falling, but in rising every time we fall."</blockquote>
-                    <div class="flex justify-between items-center">
-                        <cite class="text-sm font-medium text-gray-600">— Nelson Mandela</cite>
-                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary">
-                            <i class="ri-share-line"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Quote 5 -->
-                <div class="bg-white rounded shadow-sm p-6">
-                    <div class="flex justify-between mb-4">
-                        <span
-                            class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">Humor</span>
-                        <div class="flex">
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-gray-300">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <blockquote class="text-lg italic text-gray-700 mb-4">"Before you criticize someone, walk a mile in
-                        their shoes. That way, you'll be a mile from them, and you'll have their shoes."</blockquote>
-                    <div class="flex justify-between items-center">
-                        <cite class="text-sm font-medium text-gray-600">— Jack Handey</cite>
-                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary">
-                            <i class="ri-share-line"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Quote 6 -->
-                <div class="bg-white rounded shadow-sm p-6">
-                    <div class="flex justify-between mb-4">
-                        <span
-                            class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Wisdom</span>
-                        <div class="flex">
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                            <button class="w-6 h-6 flex items-center justify-center text-gray-300">
-                                <i class="ri-star-fill"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <blockquote class="text-lg italic text-gray-700 mb-4">"It is during our darkest moments that we must
-                        focus to see the light."</blockquote>
-                    <div class="flex justify-between items-center">
-                        <cite class="text-sm font-medium text-gray-600">— Aristotle</cite>
-                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary">
-                            <i class="ri-share-line"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-8 flex justify-center">
-                <button
-                    class="bg-white border border-gray-200 text-gray-700 px-5 py-2 rounded shadow-sm hover:bg-gray-50 !rounded-button whitespace-nowrap">Load
-                    More</button>
+            <div id="quotes-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Quotes will be rendered here by JS -->
             </div>
         </section>
 
@@ -686,9 +400,6 @@
                         <button class="w-8 h-8 flex items-center justify-center rounded hover:bg-gray-100">
                             <i class="ri-code-line"></i>
                         </button>
-                        <button class="w-8 h-8 flex items-center justify-center rounded hover:bg-gray-100">
-                            <i class="ri-image-line"></i>
-                        </button>
                     </div>
 
                     <div class="flex-grow flex flex-col md:flex-row">
@@ -716,7 +427,6 @@ function helloWorld() {
 }
 ```
 
-![Image description](https://via.placeholder.com/150)
 Enjoy writing!
                             </textarea>
                         </div>
@@ -752,341 +462,207 @@ function helloWorld() {
                     <div class="text-sm text-gray-500">
                         <span id="word-count">89 words</span> • <span id="character-count">432 characters</span>
                     </div>
-                    <div class="flex space-x-2">
-                        <button
-                            class="px-4 py-2 bg-white border border-gray-200 rounded text-gray-700 hover:bg-gray-50 text-sm !rounded-button whitespace-nowrap">Save
-                            Draft</button>
-                        <button
-                            class="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 text-sm !rounded-button whitespace-nowrap">Publish</button>
-                    </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- Video Gallery -->
+        <!-- Video Gallery Section -->
         <section id="videos" class="mb-16">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-2xl font-bold">Video Gallery</h2>
-                <div class="flex space-x-2">
-                    <button
-                        class="px-4 py-2 rounded bg-primary text-white border border-primary hover:bg-primary/90 !rounded-button whitespace-nowrap">All</button>
-                    <button
-                        class="px-4 py-2 rounded bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 !rounded-button whitespace-nowrap">Tutorials</button>
-                    <button
-                        class="px-4 py-2 rounded bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 !rounded-button whitespace-nowrap">Interviews</button>
-                    <button
-                        class="px-4 py-2 rounded bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 !rounded-button whitespace-nowrap">Events</button>
-                </div>
+                <div class="flex space-x-2" id="video-tag-filters"></div>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Video 1 -->
-                <div class="bg-white rounded shadow-sm overflow-hidden">
-                    <div class="relative">
-                        <img src="https://readdy.ai/api/search-image?query=professional%20video%20tutorial%20setup%2C%20educational%20content%20creation%2C%20online%20learning%2C%20digital%20classroom%2C%20high%20quality%20professional%20photo&width=600&height=400&seq=11&orientation=landscape"
-                            alt="Video thumbnail" class="w-full h-48 object-cover object-top">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                            <button
-                                class="w-16 h-16 flex items-center justify-center rounded-full bg-white bg-opacity-80 hover:bg-opacity-100 transition-all">
-                                <i class="ri-play-fill text-primary text-3xl"></i>
-                            </button>
-                        </div>
-                        <span
-                            class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">12:34</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex flex-wrap gap-2 mb-2">
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Tutorial</span>
-                            <span
-                                class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Beginner</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Getting Started with Data Visualization</h3>
-                        <p class="text-gray-600 text-sm mb-3">Learn the fundamentals of creating effective data
-                            visualizations for your projects.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 rounded-full bg-gray-200 mr-2"></div>
-                                <span class="text-sm font-medium">David Chen</span>
-                            </div>
-                            <span class="text-xs text-gray-500">May 12, 2025</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video 2 -->
-                <div class="bg-white rounded shadow-sm overflow-hidden">
-                    <div class="relative">
-                        <img src="https://readdy.ai/api/search-image?query=professional%20interview%20setting%2C%20two%20people%20in%20conversation%2C%20studio%20lighting%2C%20podcast%20recording%2C%20high%20quality%20professional%20photo&width=600&height=400&seq=12&orientation=landscape"
-                            alt="Video thumbnail" class="w-full h-48 object-cover object-top">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                            <button
-                                class="w-16 h-16 flex items-center justify-center rounded-full bg-white bg-opacity-80 hover:bg-opacity-100 transition-all">
-                                <i class="ri-play-fill text-primary text-3xl"></i>
-                            </button>
-                        </div>
-                        <span
-                            class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">28:17</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex flex-wrap gap-2 mb-2">
-                            <span
-                                class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Interview</span>
-                            <span
-                                class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">Expert</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">The Future of AI with Dr. Emily Watson</h3>
-                        <p class="text-gray-600 text-sm mb-3">An in-depth conversation about the ethical implications
-                            and future directions of artificial intelligence.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 rounded-full bg-gray-200 mr-2"></div>
-                                <span class="text-sm font-medium">Tech Insights</span>
-                            </div>
-                            <span class="text-xs text-gray-500">May 8, 2025</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video 3 -->
-                <div class="bg-white rounded shadow-sm overflow-hidden">
-                    <div class="relative">
-                        <img src="https://readdy.ai/api/search-image?query=professional%20conference%20event%2C%20audience%20in%20auditorium%2C%20speaker%20on%20stage%2C%20business%20presentation%2C%20high%20quality%20professional%20photo&width=600&height=400&seq=13&orientation=landscape"
-                            alt="Video thumbnail" class="w-full h-48 object-cover object-top">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                            <button
-                                class="w-16 h-16 flex items-center justify-center rounded-full bg-white bg-opacity-80 hover:bg-opacity-100 transition-all">
-                                <i class="ri-play-fill text-primary text-3xl"></i>
-                            </button>
-                        </div>
-                        <span
-                            class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">45:21</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex flex-wrap gap-2 mb-2">
-                            <span
-                                class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">Event</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Business</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Startup Summit 2025: Innovation Panel</h3>
-                        <p class="text-gray-600 text-sm mb-3">Leading entrepreneurs discuss emerging trends and
-                            opportunities in the global startup ecosystem.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 rounded-full bg-gray-200 mr-2"></div>
-                                <span class="text-sm font-medium">Startup Hub</span>
-                            </div>
-                            <span class="text-xs text-gray-500">May 1, 2025</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video 4 -->
-                <div class="bg-white rounded shadow-sm overflow-hidden">
-                    <div class="relative">
-                        <img src="https://readdy.ai/api/search-image?query=software%20development%20tutorial%2C%20coding%20on%20computer%20screen%2C%20programming%20lesson%2C%20web%20development%2C%20high%20quality%20professional%20photo&width=600&height=400&seq=14&orientation=landscape"
-                            alt="Video thumbnail" class="w-full h-48 object-cover object-top">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                            <button
-                                class="w-16 h-16 flex items-center justify-center rounded-full bg-white bg-opacity-80 hover:bg-opacity-100 transition-all">
-                                <i class="ri-play-fill text-primary text-3xl"></i>
-                            </button>
-                        </div>
-                        <span
-                            class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">18:42</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex flex-wrap gap-2 mb-2">
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Tutorial</span>
-                            <span
-                                class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">Intermediate</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Building Responsive Web Applications</h3>
-                        <p class="text-gray-600 text-sm mb-3">Learn modern techniques for creating web applications that
-                            work seamlessly across all devices.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 rounded-full bg-gray-200 mr-2"></div>
-                                <span class="text-sm font-medium">Jennifer Park</span>
-                            </div>
-                            <span class="text-xs text-gray-500">April 25, 2025</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video 5 -->
-                <div class="bg-white rounded shadow-sm overflow-hidden">
-                    <div class="relative">
-                        <img src="https://readdy.ai/api/search-image?query=creative%20design%20workshop%2C%20collaborative%20brainstorming%2C%20UX%20design%20process%2C%20design%20thinking%20session%2C%20high%20quality%20professional%20photo&width=600&height=400&seq=15&orientation=landscape"
-                            alt="Video thumbnail" class="w-full h-48 object-cover object-top">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                            <button
-                                class="w-16 h-16 flex items-center justify-center rounded-full bg-white bg-opacity-80 hover:bg-opacity-100 transition-all">
-                                <i class="ri-play-fill text-primary text-3xl"></i>
-                            </button>
-                        </div>
-                        <span
-                            class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">32:15</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex flex-wrap gap-2 mb-2">
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Tutorial</span>
-                            <span
-                                class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded">Design</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">UX Design Principles for Non-Designers</h3>
-                        <p class="text-gray-600 text-sm mb-3">Essential user experience concepts that every product
-                            manager and developer should understand.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 rounded-full bg-gray-200 mr-2"></div>
-                                <span class="text-sm font-medium">Michael Torres</span>
-                            </div>
-                            <span class="text-xs text-gray-500">April 18, 2025</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video 6 -->
-                <div class="bg-white rounded shadow-sm overflow-hidden">
-                    <div class="relative">
-                        <img src="https://readdy.ai/api/search-image?query=finance%20expert%20explaining%20investment%20strategy%2C%20professional%20financial%20advisor%2C%20wealth%20management%20presentation%2C%20high%20quality%20professional%20photo&width=600&height=400&seq=16&orientation=landscape"
-                            alt="Video thumbnail" class="w-full h-48 object-cover object-top">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                            <button
-                                class="w-16 h-16 flex items-center justify-center rounded-full bg-white bg-opacity-80 hover:bg-opacity-100 transition-all">
-                                <i class="ri-play-fill text-primary text-3xl"></i>
-                            </button>
-                        </div>
-                        <span
-                            class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">24:53</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex flex-wrap gap-2 mb-2">
-                            <span
-                                class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Interview</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Finance</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Personal Finance Strategies with Robert Miller</h3>
-                        <p class="text-gray-600 text-sm mb-3">Expert advice on building wealth, managing debt, and
-                            planning for a secure financial future.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 rounded-full bg-gray-200 mr-2"></div>
-                                <span class="text-sm font-medium">Finance Forward</span>
-                            </div>
-                            <span class="text-xs text-gray-500">April 10, 2025</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-8 flex justify-center">
-                <button
-                    class="bg-white border border-gray-200 text-gray-700 px-5 py-2 rounded shadow-sm hover:bg-gray-50 !rounded-button whitespace-nowrap">Load
-                    More</button>
-            </div>
+            <div id="video-gallery-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </section>
 
-        <!-- Interactive Zine Viewer -->
+        <!-- Video Modal -->
+        <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center hidden">
+            <div id="video-modal-content" class="relative"></div>
+        </div>
+
+        <!-- Zine Section -->
         <section id="zine" class="mb-16">
             <h2 class="text-2xl font-bold mb-6">Interactive Zine: "Digital Futures"</h2>
-
             <div class="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div class="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
                     <div class="flex items-center space-x-3">
-                        <button
-                            class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100">
+                        <button id="zine-prev"
+                            class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 transition-colors">
                             <i class="ri-arrow-left-s-line"></i>
                         </button>
-                        <button
-                            class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100">
+                        <button id="zine-next"
+                            class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 transition-colors">
                             <i class="ri-arrow-right-s-line"></i>
                         </button>
+                        <div class="h-8 w-px bg-gray-200 mx-2"></div>
+                        <div class="flex space-x-2">
+                            <button data-tag="All"
+                                class="zine-tag-filter px-3 py-1 text-xs rounded-full bg-primary text-white">All</button>
+                            <button data-tag="AI"
+                                class="zine-tag-filter px-3 py-1 text-xs rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">AI</button>
+                            <button data-tag="VR"
+                                class="zine-tag-filter px-3 py-1 text-xs rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">VR</button>
+                            <button data-tag="Tech"
+                                class="zine-tag-filter px-3 py-1 text-xs rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Tech</button>
+                        </div>
                     </div>
-
                     <div class="text-sm text-gray-500">Page <span id="current-page">1</span> of <span
-                            id="total-pages">8</span></div>
-
+                            id="total-pages">4</span></div>
                     <div class="flex items-center space-x-3">
-                        <button
-                            class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100">
+                        <button id="zine-fullscreen"
+                            class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 transition-colors">
                             <i class="ri-fullscreen-line"></i>
                         </button>
-                        <button
-                            class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100">
+                        <button id="zine-download"
+                            class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 transition-colors">
                             <i class="ri-download-2-line"></i>
+                        </button>
+                        <button id="zine-toc"
+                            class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 transition-colors">
+                            <i class="ri-list-check"></i>
                         </button>
                     </div>
                 </div>
-
                 <div class="relative h-[500px] overflow-hidden">
-                    <div class="zine-page visible absolute inset-0 p-8 flex flex-col md:flex-row">
-                        <div class="md:w-1/2 flex flex-col justify-center p-6">
-                            <h3 class="text-3xl font-bold mb-4 text-primary">Digital Futures</h3>
-                            <p class="text-xl mb-6">Exploring the intersection of technology, society, and human
-                                potential.</p>
-                            <p class="text-gray-600 mb-8">A collaborative zine featuring insights from leading thinkers,
-                                artists, and innovators about how emerging technologies are reshaping our world.</p>
-                            <div class="flex space-x-3">
-                                <button
-                                    class="px-5 py-2 bg-primary text-white rounded hover:bg-primary/90 !rounded-button whitespace-nowrap">Start
-                                    Reading</button>
-                                <button
-                                    class="px-5 py-2 bg-white border border-gray-200 text-gray-700 rounded hover:bg-gray-50 !rounded-button whitespace-nowrap">About
-                                    this Project</button>
-                            </div>
-                        </div>
-                        <div class="md:w-1/2 flex items-center justify-center p-6">
-                            <img src="https://readdy.ai/api/search-image?query=futuristic%20digital%20art%2C%20technology%20concept%2C%20abstract%20visualization%20of%20digital%20transformation%2C%20high%20quality%20professional%20illustration&width=500&height=500&seq=17&orientation=squarish"
-                                alt="Digital Futures cover" class="max-w-full h-auto rounded-lg shadow-lg">
-                        </div>
-                    </div>
+                    <div id="zine-progress" class="absolute top-0 left-0 h-1 bg-primary z-10 transition-all"
+                        style="width: 25%"></div>
+                    <div id="zine-pages-container" class="w-full h-full"></div>
                 </div>
-
                 <div class="p-4 border-t border-gray-200 overflow-x-auto">
-                    <div class="flex space-x-3 min-w-max">
-                        <div class="w-16 h-16 rounded border-2 border-primary overflow-hidden">
-                            <img src="https://readdy.ai/api/search-image?query=futuristic%20digital%20art%2C%20technology%20concept%2C%20abstract%20visualization%20of%20digital%20transformation%2C%20high%20quality%20professional%20illustration&width=100&height=100&seq=17&orientation=squarish"
-                                alt="Page thumbnail" class="w-full h-full object-cover">
-                        </div>
-                        <div class="w-16 h-16 rounded border border-gray-200 overflow-hidden">
-                            <img src="https://readdy.ai/api/search-image?query=artificial%20intelligence%20visualization%2C%20neural%20network%20concept%2C%20machine%20learning%20illustration%2C%20high%20quality%20professional%20illustration&width=100&height=100&seq=18&orientation=squarish"
-                                alt="Page thumbnail" class="w-full h-full object-cover">
-                        </div>
-                        <div class="w-16 h-16 rounded border border-gray-200 overflow-hidden">
-                            <img src="https://readdy.ai/api/search-image?query=virtual%20reality%20experience%2C%20immersive%20technology%2C%20digital%20environment%2C%20futuristic%20interface%2C%20high%20quality%20professional%20illustration&width=100&height=100&seq=19&orientation=squarish"
-                                alt="Page thumbnail" class="w-full h-full object-cover">
-                        </div>
-                        <div class="w-16 h-16 rounded border border-gray-200 overflow-hidden">
-                            <img src="https://readdy.ai/api/search-image?query=sustainable%20technology%2C%20green%20tech%20innovation%2C%20environmental%20solution%2C%20eco-friendly%20future%2C%20high%20quality%20professional%20illustration&width=100&height=100&seq=20&orientation=squarish"
-                                alt="Page thumbnail" class="w-full h-full object-cover">
-                        </div>
-                        <div class="w-16 h-16 rounded border border-gray-200 overflow-hidden">
-                            <img src="https://readdy.ai/api/search-image?query=digital%20healthcare%2C%20medical%20technology%2C%20health%20monitoring%20devices%2C%20telemedicine%20concept%2C%20high%20quality%20professional%20illustration&width=100&height=100&seq=21&orientation=squarish"
-                                alt="Page thumbnail" class="w-full h-full object-cover">
-                        </div>
-                        <div class="w-16 h-16 rounded border border-gray-200 overflow-hidden">
-                            <img src="https://readdy.ai/api/search-image?query=future%20of%20education%2C%20digital%20learning%2C%20educational%20technology%2C%20online%20classroom%20concept%2C%20high%20quality%20professional%20illustration&width=100&height=100&seq=22&orientation=squarish"
-                                alt="Page thumbnail" class="w-full h-full object-cover">
-                        </div>
-                        <div class="w-16 h-16 rounded border border-gray-200 overflow-hidden">
-                            <img src="https://readdy.ai/api/search-image?query=smart%20city%20concept%2C%20urban%20technology%2C%20connected%20infrastructure%2C%20future%20city%20design%2C%20high%20quality%20professional%20illustration&width=100&height=100&seq=23&orientation=squarish"
-                                alt="Page thumbnail" class="w-full h-full object-cover">
-                        </div>
-                        <div class="w-16 h-16 rounded border border-gray-200 overflow-hidden">
-                            <img src="https://readdy.ai/api/search-image?query=digital%20ethics%2C%20technology%20responsibility%2C%20future%20governance%2C%20ethical%20innovation%20concept%2C%20high%20quality%20professional%20illustration&width=100&height=100&seq=24&orientation=squarish"
-                                alt="Page thumbnail" class="w-full h-full object-cover">
-                        </div>
-                    </div>
+                    <div id="zine-thumbnails" class="flex space-x-3 min-w-max"></div>
+                </div>
+            </div>
+
+            <!-- Modal for fullscreen image -->
+            <div id="zine-modal"
+                class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center hidden">
+                <div class="relative max-w-4xl w-full">
+                    <img id="zine-modal-img" src="" alt="" class="max-h-[80vh] w-auto mx-auto rounded-lg shadow-lg" />
+                    <div id="zine-modal-caption" class="text-white text-center mt-4 max-w-2xl mx-auto"></div>
+                    <button id="zine-modal-close"
+                        class="absolute top-2 right-2 text-gray-100 hover:text-primary text-2xl bg-white/20 hover:bg-white/40 rounded-full w-10 h-10 flex items-center justify-center shadow transition-colors">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Table of Contents Modal -->
+            <div id="zine-toc-modal"
+                class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center hidden">
+                <div class="bg-white rounded-lg shadow-lg p-6 max-w-2xl w-full">
+                    <h3 class="text-xl font-bold mb-4">Table of Contents</h3>
+                    <div id="zine-toc-content" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+                    <button id="zine-toc-close"
+                        class="absolute top-4 right-4 text-gray-500 hover:text-primary text-2xl">
+                        <i class="ri-close-line"></i>
+                    </button>
                 </div>
             </div>
         </section>
 
+        <!-- Advanced Podcast Player -->
+        <section class="mb-16 bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-2xl font-bold mb-6">Podcast Player</h2>
+            <div class="bg-gray-50 rounded-lg p-6">
+                <audio id="podcast-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+                <div class="flex items-center space-x-4 mb-2">
+                    <!-- Play Button -->
+                    <button id="podcast-play"
+                        class="w-12 h-12 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary/90 focus:outline-none">
+                        <i id="podcast-play-icon" class="ri-play-fill text-2xl"></i>
+                    </button>
+                    <!-- Progress Bar & Times -->
+                    <div class="flex-grow flex flex-col">
+                        <div class="flex items-center w-full">
+                            <span id="podcast-current-time"
+                                class="text-xs text-gray-700 w-12 text-right mr-2">19:41</span>
+                            <div class="relative flex-grow h-3 flex items-center">
+                                <div class="absolute inset-0 flex items-center">
+                                    <div class="h-1 w-full bg-gray-200 rounded-full"></div>
+                                    <div id="podcast-progress-bar"
+                                        class="h-1 bg-primary rounded-full absolute left-0 top-0" style="width: 35%">
+                                    </div>
+                                </div>
+                                <div id="podcast-progress-handle"
+                                    class="absolute h-4 w-4 bg-primary border-2 border-white shadow -ml-2 rounded-full cursor-pointer"
+                                    style="left: 35%"></div>
+                            </div>
+                            <span id="podcast-total-time" class="text-xs text-gray-700 w-12 text-left ml-2">56:23</span>
+                        </div>
+                    </div>
+                    <!-- Controls -->
+                    <div class="flex items-center space-x-2 ml-2">
+                        <button id="podcast-rewind"
+                            class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                            title="Rewind 15s">
+                            <i class="ri-rewind-line"></i>
+                        </button>
+                        <button id="podcast-forward"
+                            class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                            title="Forward 15s">
+                            <i class="ri-speed-line"></i>
+                        </button>
+                        <button id="podcast-mute"
+                            class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                            title="Mute/Unmute">
+                            <i id="podcast-mute-icon" class="ri-volume-up-line"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Waveform Visualization (SVG, static for demo) -->
+                <div class="h-16 w-full bg-white rounded-lg overflow-hidden mt-2 flex items-end">
+                    <svg id="podcast-waveform" width="100%" height="100%" viewBox="0 0 600 60"
+                        preserveAspectRatio="none" class="w-full h-full">
+                        <polyline id="wave-main" fill="none" stroke="#4F46E5" stroke-width="2"
+                            points="0,40 10,35 20,45 30,30 40,50 50,38 60,55 70,33 80,45 90,40 100,50 110,30 120,55 130,35 140,45 150,40 160,50 170,30 180,55 190,35 200,45 210,40 220,50 230,30 240,55 250,35 260,45 270,40 280,50 290,30 300,55 310,35 320,45 330,40 340,50 350,30 360,55 370,35 380,45 390,40 400,50 410,30 420,55 430,35 440,45 450,40 460,50 470,30 480,55 490,35 500,45 510,40 520,50 530,30 540,55 550,35 560,45 570,40 580,50 590,30 600,45" />
+                        <polyline id="wave-bg" fill="none" stroke="#A5B4FC" stroke-width="2" opacity="0.4"
+                            points="0,50 10,45 20,55 30,40 40,60 50,48 60,65 70,43 80,55 90,50 100,60 110,40 120,65 130,45 140,55 150,50 160,60 170,40 180,65 190,45 200,55 210,50 220,60 230,40 240,65 250,45 260,55 270,50 280,60 290,40 300,65 310,45 320,55 330,50 340,60 350,40 360,65 370,45 380,55 390,50 400,60 410,40 420,65 430,45 440,55 450,50 460,60 470,40 480,65 490,45 500,55 510,50 520,60 530,40 540,65 550,45 560,55 570,50 580,60 590,40 600,55" />
+                    </svg>
+                </div>
+            </div>
+            <!-- Episode Notes with timestamp links -->
+            <div class="mt-6">
+                <h4 class="text-lg font-semibold mb-3">Episode Notes</h4>
+                <div class="space-y-3" id="podcast-notes">
+                    <div class="flex">
+                        <button class="text-sm font-medium text-primary w-16 text-left podcast-timestamp"
+                            data-time="134">01:14</button>
+                        <p class="text-gray-700">Introduction to cognitive psychology principles for productivity</p>
+                    </div>
+                    <div class="flex">
+                        <button class="text-sm font-medium text-primary w-16 text-left podcast-timestamp"
+                            data-time="517">02:37</button>
+                        <p class="text-gray-700">The science behind deep work and flow states</p>
+                    </div>
+                    <div class="flex">
+                        <button class="text-sm font-medium text-primary w-16 text-left podcast-timestamp"
+                            data-time="922">3:22</button>
+                        <p class="text-gray-700">Common productivity myths debunked with research</p>
+                    </div>
+                    <div class="flex">
+                        <button class="text-sm font-medium text-primary w-16 text-left podcast-timestamp"
+                            data-time="1425">4:45</button>
+                        <p class="text-gray-700">Practical techniques for overcoming procrastination</p>
+                    </div>
+                    <div class="flex">
+                        <button class="text-sm font-medium text-primary w-16 text-left podcast-timestamp"
+                            data-time="1878">5:18</button>
+                        <p class="text-gray-700">The role of environment in productivity optimization</p>
+                    </div>
+                    <div class="flex">
+                        <button class="text-sm font-medium text-primary w-16 text-left podcast-timestamp"
+                            data-time="2525">6:05</button>
+                        <p class="text-gray-700">Digital tools and systems for maintaining focus</p>
+                    </div>
+                    <div class="flex">
+                        <button class="text-sm font-medium text-primary w-16 text-left podcast-timestamp"
+                            data-time="2970">6:10</button>
+                        <p class="text-gray-700">Q&amp;A session with audience questions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Newsletter Builder -->
         <section class="mb-16 bg-white rounded-lg shadow-sm overflow-hidden">
             <div class="border-b border-gray-200 p-4">
@@ -1159,20 +735,21 @@ function helloWorld() {
 
                 <!-- Canvas Area -->
                 <div class="flex-grow p-6">
-                    <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg min-h-[500px] p-6">
+                    <div id="newsletter-canvas"
+                        class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg min-h-[500px] p-6">
                         <!-- Example Content -->
                         <div class="bg-white rounded shadow-sm p-4 mb-4 relative">
                             <div class="absolute top-2 right-2 flex space-x-1">
                                 <button
-                                    class="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-500">
+                                    class="w-6 h-6 flex items-center justify-center rounded bg-white hover:bg-gray-100 text-gray-500">
                                     <i class="ri-arrow-up-line"></i>
                                 </button>
                                 <button
-                                    class="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-500">
+                                    class="w-6 h-6 flex items-center justify-center rounded bg-white hover:bg-gray-100 text-gray-500">
                                     <i class="ri-arrow-down-line"></i>
                                 </button>
                                 <button
-                                    class="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-500">
+                                    class="w-6 h-6 flex items-center justify-center rounded bg-white hover:bg-gray-100 text-gray-500">
                                     <i class="ri-delete-bin-line"></i>
                                 </button>
                             </div>
@@ -1181,36 +758,36 @@ function helloWorld() {
                         </div>
 
                         <div class="bg-white rounded shadow-sm p-4 mb-4 relative">
-                            <div class="absolute top-2 right-2 flex space-x-1">
+                            <div class="absolute top-2 right-2 flex space-x-1 bg-white/80 p-1 rounded shadow">
                                 <button
-                                    class="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-500">
+                                    class="w-6 h-6 flex items-center justify-center rounded bg-white border border-gray-300 shadow-sm hover:bg-gray-100 text-gray-800">
                                     <i class="ri-arrow-up-line"></i>
                                 </button>
                                 <button
-                                    class="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-500">
+                                    class="w-6 h-6 flex items-center justify-center rounded bg-white border border-gray-300 shadow-sm hover:bg-gray-100 text-gray-800">
                                     <i class="ri-arrow-down-line"></i>
                                 </button>
                                 <button
-                                    class="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-500">
+                                    class="w-6 h-6 flex items-center justify-center rounded bg-white border border-gray-300 shadow-sm hover:bg-gray-100 text-gray-800">
                                     <i class="ri-delete-bin-line"></i>
                                 </button>
                             </div>
-                            <img src="https://readdy.ai/api/search-image?query=business%20team%20collaboration%2C%20professional%20meeting%2C%20diverse%20workplace%2C%20creative%20brainstorming%20session%2C%20high%20quality%20professional%20photo&width=800&height=400&seq=25&orientation=landscape"
+                            <img src="https://cdn.pixabay.com/photo/2014/11/14/03/38/news-530220_1280.jpg"
                                 alt="Newsletter header image" class="w-full h-auto rounded mb-2">
                         </div>
 
                         <div class="bg-white rounded shadow-sm p-4 mb-4 relative">
                             <div class="absolute top-2 right-2 flex space-x-1">
                                 <button
-                                    class="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-500">
+                                    class="w-6 h-6 flex items-center justify-center rounded bg-white hover:bg-gray-100 text-gray-500">
                                     <i class="ri-arrow-up-line"></i>
                                 </button>
                                 <button
-                                    class="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-500">
+                                    class="w-6 h-6 flex items-center justify-center rounded bg-white hover:bg-gray-100 text-gray-500">
                                     <i class="ri-arrow-down-line"></i>
                                 </button>
                                 <button
-                                    class="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-500">
+                                    class="w-6 h-6 flex items-center justify-center rounded bg-white hover:bg-gray-100 text-gray-500">
                                     <i class="ri-delete-bin-line"></i>
                                 </button>
                             </div>
@@ -1223,42 +800,48 @@ function helloWorld() {
                                 better serve your needs.</p>
                         </div>
 
-                        <div class="flex justify-center">
+                        <div id="newsletter-placeholder" class="flex justify-center">
                             <p class="text-gray-500 text-sm italic">Drag components here to build your newsletter</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Properties Panel -->
-                <div class="w-full md:w-72 border-t md:border-t-0 md:border-l border-gray-200 p-4">
+                <div class="w-full md:w-72 border-t md:border-t-0 md:border-l border-gray-200 p-4"
+                    id="properties-panel">
                     <h3 class="font-medium text-gray-700 mb-3">Properties</h3>
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Text</label>
-                            <textarea class="w-full p-2 border border-gray-300 rounded text-sm"
-                                rows="3">What's New This Month</textarea>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="prop-text">Text</label>
+                            <textarea id="prop-text" class="w-full p-2 border border-gray-300 rounded text-sm"
+                                rows="3"></textarea>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Font Size</label>
-                            <select class="w-full p-2 border border-gray-300 rounded text-sm">
-                                <option>Small</option>
-                                <option selected>Medium</option>
-                                <option>Large</option>
-                                <option>Extra Large</option>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="prop-font-size">Font
+                                Size</label>
+                            <select id="prop-font-size" class="w-full p-2 border border-gray-300 rounded text-sm">
+                                <option value="Small">Small</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="Large">Large</option>
+                                <option value="Extra Large">Extra Large</option>
                             </select>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Text Alignment</label>
-                            <div class="flex border border-gray-300 rounded overflow-hidden">
-                                <button class="flex-1 py-2 bg-primary text-white">
+                            <div class="flex border border-gray-300 rounded overflow-hidden" id="prop-align-group">
+                                <button id="prop-align-left" class="flex-1 py-2 bg-white text-gray-700" type="button"
+                                    data-align="left">
                                     <i class="ri-align-left"></i>
                                 </button>
-                                <button class="flex-1 py-2 bg-white text-gray-700 border-l border-r border-gray-300">
+                                <button id="prop-align-center"
+                                    class="flex-1 py-2 bg-white text-gray-700 border-l border-r border-gray-300"
+                                    type="button" data-align="center">
                                     <i class="ri-align-center"></i>
                                 </button>
-                                <button class="flex-1 py-2 bg-white text-gray-700">
+                                <button id="prop-align-right" class="flex-1 py-2 bg-white text-gray-700" type="button"
+                                    data-align="right">
                                     <i class="ri-align-right"></i>
                                 </button>
                             </div>
@@ -1266,43 +849,89 @@ function helloWorld() {
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Color</label>
-                            <div class="flex space-x-2">
-                                <div class="w-6 h-6 bg-black rounded-full border-2 border-primary"></div>
-                                <div class="w-6 h-6 bg-gray-700 rounded-full"></div>
-                                <div class="w-6 h-6 bg-primary rounded-full"></div>
-                                <div class="w-6 h-6 bg-red-500 rounded-full"></div>
-                                <div class="w-6 h-6 bg-green-500 rounded-full"></div>
-                                <div class="w-6 h-6 bg-blue-500 rounded-full"></div>
-                                <button
-                                    class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-500">
+                            <div class="flex space-x-2" id="prop-color-group">
+                                <button id="prop-color-black"
+                                    class="w-6 h-6 bg-black rounded-full border-2 border-primary" type="button"
+                                    data-color="#000"></button>
+                                <button id="prop-color-gray" class="w-6 h-6 bg-gray-700 rounded-full" type="button"
+                                    data-color="#374151"></button>
+                                <button id="prop-color-primary" class="w-6 h-6 bg-primary rounded-full" type="button"
+                                    data-color="#4f46e5"></button>
+                                <button id="prop-color-red" class="w-6 h-6 bg-red-500 rounded-full" type="button"
+                                    data-color="#ef4444"></button>
+                                <button id="prop-color-green" class="w-6 h-6 bg-green-500 rounded-full" type="button"
+                                    data-color="#22c55e"></button>
+                                <button id="prop-color-blue" class="w-6 h-6 bg-blue-500 rounded-full" type="button"
+                                    data-color="#3b82f6"></button>
+                                <button id="prop-color-custom"
+                                    class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-500"
+                                    type="button">
                                     <i class="ri-add-line"></i>
                                 </button>
+                                <input type="color" id="prop-color-picker" class="hidden" />
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Spacing</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1"
+                                for="prop-padding">Spacing</label>
                             <div class="flex items-center">
                                 <span class="text-xs text-gray-500 mr-2">Padding</span>
-                                <input type="range" min="0" max="40" value="16" class="flex-grow">
-                                <span class="text-xs text-gray-700 ml-2">16px</span>
+                                <input type="range" min="0" max="40" value="16" id="prop-padding" class="flex-grow">
+                                <span id="prop-padding-value" class="text-xs text-gray-700 ml-2">16px</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- ... existing code ... -->
             <div class="border-t border-gray-200 p-4 flex justify-between items-center bg-gray-50">
                 <div>
-                    <button
-                        class="px-4 py-2 bg-white border border-gray-200 rounded text-gray-700 hover:bg-gray-50 text-sm mr-2 !rounded-button whitespace-nowrap">Preview</button>
-                    <button
-                        class="px-4 py-2 bg-white border border-gray-200 rounded text-gray-700 hover:bg-gray-50 text-sm !rounded-button whitespace-nowrap">Save
+                    <button id="newsletter-preview-btn"
+                        class="px-4 py-2 bg-white border border-gray-200 rounded text-gray-700 hover:bg-gray-50 text-sm mr-2 !rounded-button whitespace-nowrap transition-all">Preview</button>
+                    <button id="newsletter-save-btn"
+                        class="px-4 py-2 bg-white border border-gray-200 rounded text-gray-700 hover:bg-gray-50 text-sm !rounded-button whitespace-nowrap transition-all">Save
                         Draft</button>
                 </div>
-                <button
-                    class="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 text-sm !rounded-button whitespace-nowrap">Send
-                    Newsletter</button>
+                <button id="newsletter-send-btn"
+                    class="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 text-sm !rounded-button whitespace-nowrap transition-all flex items-center justify-center relative">Send
+                    Newsletter
+                    <span id="newsletter-send-spinner"
+                        class="hidden ml-2 w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                </button>
+            </div>
+
+            <!-- Preview Modal -->
+            <div id="newsletter-preview-modal"
+                class="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center hidden">
+                <div class="bg-white rounded-lg shadow-lg max-w-2xl w-full p-6 relative">
+                    <button id="newsletter-preview-close"
+                        class="absolute top-3 right-3 text-gray-400 hover:text-primary text-2xl">
+                        <i class="ri-close-line"></i>
+                    </button>
+                    <h3 class="text-xl font-bold mb-4">Newsletter Preview</h3>
+                    <div id="newsletter-preview-content" class="overflow-y-auto max-h-[60vh]"></div>
+                </div>
+            </div>
+
+            <!-- Success Modal -->
+            <div id="newsletter-success-modal"
+                class="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center hidden">
+                <div class="bg-white rounded-lg shadow-lg max-w-sm w-full p-6 relative text-center">
+                    <button id="newsletter-success-close"
+                        class="absolute top-3 right-3 text-gray-400 hover:text-primary text-2xl">
+                        <i class="ri-close-line"></i>
+                    </button>
+                    <i class="ri-checkbox-circle-line text-green-500 text-4xl mb-2"></i>
+                    <h3 class="text-lg font-bold mb-2">Newsletter sent successfully!</h3>
+                    <p class="text-gray-600">Your newsletter has been sent</p>
+                </div>
+            </div>
+
+            <!-- Toast -->
+            <div id="newsletter-toast"
+                class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-4 py-2 rounded shadow-lg z-50 hidden transition-all">
             </div>
         </section>
 
@@ -1782,6 +1411,8 @@ function helloWorld() {
     </footer>
 
     <script src="Modern-Web-App-UI-Design.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
 </body>
 
 </html>
