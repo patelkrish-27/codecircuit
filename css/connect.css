@@ -500,3 +500,65 @@ input[type="number"]::-webkit-outer-spin-button {
 html {
   scroll-behavior: smooth;
 }
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+/* Button feedback */
+button,
+[type="button"],
+[type="submit"] {
+  transition: 
+    transform 0.15s cubic-bezier(.4,2,.6,1),
+    box-shadow 0.2s cubic-bezier(.4,2,.6,1),
+    background 0.2s;
+}
+
+button:hover,
+[type="button"]:hover,
+[type="submit"]:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.15), 0 0 0 2px #6365f165;
+  z-index: 1;
+}
+
+button:active,
+[type="button"]:active,
+[type="submit"]:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+}
+
+button:focus-visible,
+[type="button"]:focus-visible,
+[type="submit"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px #6365f165, 0 4px 16px rgba(79, 70, 229, 0.15);
+}
+
+/* Input feedback */
+input,
+select,
+textarea {
+  transition: 
+    box-shadow 0.2s cubic-bezier(.4,2,.6,1),
+    border-color 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #6365f165;
+  box-shadow: 0 0 0 2px #6365f165, 0 2px 8px rgba(79, 70, 229, 0.08);
+  outline: none;
+}

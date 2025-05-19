@@ -3346,3 +3346,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Ensure the page loads at the top
+    window.scrollTo(0, 0);
+
+    const sections = document.querySelectorAll('section');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    sections.forEach(section => {
+        section.classList.add('fade-in');
+        observer.observe(section);
+    });
+});
+
